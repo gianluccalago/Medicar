@@ -85,49 +85,40 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-canvas">
-      {/* Barra utilitária — Emergência em destaque */}
+      {/*
+        Barra utilitária — clone do site anterior: texto bold em linha única,
+        ícones circulares e separadores entre os blocos. Emergência em destaque.
+      */}
       <div className="bg-medicar-red text-white">
-        <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-4 py-2 md:px-6">
-          <span className="hidden text-body-sm font-medium sm:block">Seja bem-vindo à Medicar</span>
-          <div className="flex flex-1 items-center justify-end gap-4 sm:gap-7">
+        <div className="mx-auto flex max-w-page items-stretch justify-between md:px-6">
+          <span className="hidden items-center px-4 text-[15px] font-bold tracking-[-0.01em] lg:flex">
+            Seja Bem-vindo a Medicar
+          </span>
+          <div className="flex flex-1 items-stretch justify-center max-lg:justify-between lg:flex-none">
             <a
               href={phones.emergency.tel}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-white/0 px-1 transition-colors hover:bg-white/10"
+              className="flex items-center gap-2.5 border-l border-white/25 px-4 py-2.5 transition-colors hover:bg-white/10 sm:px-7"
             >
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-medicar-red">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M12 8v8M8 12h8"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                  />
-                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-[1.8px] border-white">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 7v10M7 12h10" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
                 </svg>
               </span>
-              <span className="leading-tight">
-                <span className="block text-[11px] font-bold uppercase tracking-wide text-white/85">
-                  Emergência 24h
-                </span>
-                <span className="block text-body font-bold tracking-tight">
-                  {phones.emergency.display}
-                </span>
+              <span className="whitespace-nowrap text-[15px] font-bold tracking-[-0.01em]">
+                <span className="uppercase">Emergência</span> 24h: {phones.emergency.display}
               </span>
             </a>
             <a
               href={phones.commercial.tel}
-              className="hidden items-center gap-2 md:inline-flex"
+              className="hidden items-center gap-2.5 border-l border-white/25 px-7 py-2.5 transition-colors hover:bg-white/10 md:flex"
             >
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/50">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-[1.8px] border-white">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11 11 0 003.4.55 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.55 3.4 1 1 0 01-.24 1l-2.2 2.4z" />
                 </svg>
               </span>
-              <span className="leading-tight">
-                <span className="block text-[11px] font-medium uppercase tracking-wide text-white/75">
-                  Comercial/SAC
-                </span>
-                <span className="block text-body-sm font-semi">{phones.commercial.display}</span>
+              <span className="whitespace-nowrap text-[15px] font-bold tracking-[-0.01em]">
+                <span className="uppercase">Comercial/SAC:</span> {phones.commercial.display}
               </span>
             </a>
           </div>
@@ -138,13 +129,13 @@ export function Header() {
       <div className="border-b border-line bg-canvas">
         <nav
           aria-label="Navegação principal"
-          className="mx-auto flex h-[68px] max-w-page items-stretch justify-between gap-4 px-4 md:px-6"
+          className="mx-auto flex h-[76px] max-w-page items-stretch justify-between gap-4 px-4 md:px-6"
         >
           <Link to="/" aria-label="Medicar — página inicial" className="flex items-center">
             <Logo />
           </Link>
 
-          {/* Menus desktop */}
+          {/* Menus desktop — texto bold como no site anterior */}
           <div className="hidden items-stretch lg:flex">
             {menus.map((menu) => {
               const isOpen = openMenu === menu.label
@@ -160,28 +151,28 @@ export function Header() {
                     aria-expanded={isOpen}
                     aria-haspopup="true"
                     onClick={() => setOpenMenu(isOpen ? null : menu.label)}
-                    className={`inline-flex items-center gap-1.5 px-5 text-body-sm font-medium transition-colors ${
+                    className={`inline-flex items-center gap-2 whitespace-nowrap px-6 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
                       isOpen ? 'bg-medicar-red text-white' : 'text-ink hover:text-medicar-red-deep'
                     }`}
                   >
                     {menu.label}
                     <svg
-                      width="10"
-                      height="10"
+                      width="11"
+                      height="11"
                       viewBox="0 0 10 10"
                       aria-hidden="true"
-                      className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                      className={`mt-0.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
                     >
-                      <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                      <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </button>
                   {isOpen && (
-                    <div className="absolute left-0 top-full min-w-[240px] rounded-b-card border border-t-0 border-line bg-canvas py-2 shadow-[0_16px_40px_rgba(27,28,30,0.12)]">
+                    <div className="absolute left-0 top-full min-w-[260px] rounded-b-card border border-t-0 border-line bg-canvas py-2 shadow-[0_16px_40px_rgba(27,28,30,0.14)]">
                       {menu.items.map((item) => (
                         <Link
                           key={item.to + item.label}
                           to={item.to}
-                          className="block px-5 py-2 text-body-sm text-ink-soft transition-colors hover:bg-surface hover:text-medicar-red-deep"
+                          className="block px-5 py-2.5 text-[15px] font-medium text-ink transition-colors hover:bg-surface hover:text-medicar-red-deep"
                         >
                           {item.label}
                         </Link>
@@ -194,7 +185,7 @@ export function Header() {
             <NavLink
               to="/blog"
               className={({ isActive }) =>
-                `inline-flex items-center px-5 text-body-sm font-medium transition-colors ${
+                `inline-flex items-center whitespace-nowrap border-l border-line px-6 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
                   isActive ? 'text-medicar-red-deep' : 'text-ink hover:text-medicar-red-deep'
                 }`
               }
@@ -204,7 +195,7 @@ export function Header() {
             <NavLink
               to="/contato"
               className={({ isActive }) =>
-                `inline-flex items-center px-5 text-body-sm font-medium transition-colors ${
+                `inline-flex items-center whitespace-nowrap border-l border-line px-6 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
                   isActive ? 'text-medicar-red-deep' : 'text-ink hover:text-medicar-red-deep'
                 }`
               }
@@ -213,15 +204,15 @@ export function Header() {
             </NavLink>
           </div>
 
-          {/* Ações à direita */}
-          <div className="flex items-center gap-2">
+          {/* Ações à direita — botões maiores, texto bold */}
+          <div className="flex items-center gap-2.5">
             <a
               href={careersUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center gap-2 rounded-btn border border-medicar-red px-4 py-2 text-body-sm font-medium text-medicar-red transition-colors hover:bg-red-wash xl:inline-flex"
+              className="hidden items-center gap-2.5 whitespace-nowrap rounded-btn border-[1.5px] border-medicar-red px-5 py-2.5 text-[15px] font-bold text-medicar-red transition-colors hover:bg-red-wash xl:inline-flex"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
                 <rect x="3" y="7" width="18" height="13" rx="2" />
                 <path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" />
               </svg>
@@ -229,9 +220,9 @@ export function Header() {
             </a>
             <Link
               to="/area-do-cliente"
-              className="hidden items-center gap-2 rounded-btn bg-medicar-red px-4 py-2 text-body-sm font-medium text-white transition-colors hover:bg-medicar-red-deep sm:inline-flex"
+              className="hidden items-center gap-2.5 whitespace-nowrap rounded-btn bg-medicar-red px-5 py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-medicar-red-deep sm:inline-flex"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
                 <circle cx="12" cy="8" r="3.5" />
                 <path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" />
               </svg>
