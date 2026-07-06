@@ -1,36 +1,25 @@
-import { AsteriskMark } from './AsteriskMark'
-import { company } from '../data/site'
+import logoColor from '../assets/logo-color.webp'
+import logoWhite from '../assets/logo-white.webp'
 
 interface LogoProps {
-  /** 'default' = tema claro · 'onRed' = wordmark branco para fundos vermelhos */
+  /** 'default' = logo colorido (fundos claros) · 'onRed' = logo branco (fundos vinho/vermelho) */
   variant?: 'default' | 'onRed'
-  withTagline?: boolean
+  className?: string
 }
 
-/** Logo Medicar: asterisco 8 pontas + wordmark arredondado + tagline. */
-export function Logo({ variant = 'default', withTagline = true }: LogoProps) {
+/**
+ * Logo oficial da Medicar (mark + wordmark "medicar soluções em saúde"),
+ * artwork real extraído em alta resolução do material institucional.
+ */
+export function Logo({ variant = 'default', className = '' }: LogoProps) {
   const onRed = variant === 'onRed'
   return (
-    <span className="inline-flex items-center gap-2.5">
-      <AsteriskMark size={36} variant={onRed ? 'white' : 'brand'} />
-      <span className="flex flex-col leading-none">
-        <span
-          className={`font-rounded text-[23px] font-semi lowercase leading-none tracking-[-0.01em] ${
-            onRed ? 'text-white' : 'text-ink'
-          }`}
-        >
-          medicar<span className={onRed ? 'text-white/70' : 'text-medicar-red'}>.</span>
-        </span>
-        {withTagline && (
-          <span
-            className={`mt-1 text-[10.5px] tracking-[0.01em] ${
-              onRed ? 'text-white/80' : 'text-ink-muted'
-            }`}
-          >
-            {company.tagline}
-          </span>
-        )}
-      </span>
-    </span>
+    <img
+      src={onRed ? logoWhite : logoColor}
+      alt="Medicar — soluções em saúde"
+      width={onRed ? 620 : 620}
+      height={onRed ? 199 : 250}
+      className={`h-11 w-auto md:h-12 ${className}`}
+    />
   )
 }
