@@ -17,9 +17,9 @@ export function Logo({ variant = 'default', className = '' }: LogoProps) {
     <img
       src={onRed ? logoWhite : logoColor}
       alt="Medicar — soluções em saúde"
-      width={onRed ? 620 : 620}
+      width={620}
       height={onRed ? 199 : 250}
-      className={`h-11 w-auto md:h-12 ${className}`}
+      className={`h-14 w-auto md:h-16 ${className}`}
     />
   )
 }

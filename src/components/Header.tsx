@@ -54,8 +54,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-canvas">
-      {/* Barra utilitária em vinho — emergência sempre visível, caixa normal */}
-      <div className="bg-medicar-wine text-white">
+      {/* Barra utilitária em vermelho vivo — emergência sempre visível, caixa normal */}
+      <div className="bg-medicar-red text-white">
         <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-4 py-1.5 md:px-6">
           <a
             href={phones.emergency.tel}

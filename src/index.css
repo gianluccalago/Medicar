@@ -19,35 +19,27 @@
 
   /*
    * Vermelho Medicar — TOKEN ÚNICO da marca.
-   * Extraído do asterisco do logo na apresentação institucional oficial
-   * (pá vermelha #B91A1C, hub/pás ortogonais #5F5D5C). Fixado como #C4161C.
+   * Vermelho vivo dos prints/mockup (barra e botões): amostra #BF1F24.
    */
-  --color-medicar-red: #c4161c;
+  --color-medicar-red: #bf1f24;
   --color-medicar-red-deep: #9e1216; /* hover/pressed e texto pequeno sobre branco (AA) */
   --color-red-wash: #fdecee; /* fundos de destaque suaves, badges */
   --color-brand-gray: #5f5d5c; /* pás ortogonais e hub do asterisco */
   /*
-   * Vinho Medicar — tom mais profundo que o vermelho primário, para a barra
-   * utilitária superior e o footer (adendo dos prints). Derivado do vermelho
-   * da marca escurecido para leitura de "vinho/bordô".
+   * Vermelho profundo (footer e faixas de impacto). Deep red, não "vinho"
+   * escuro — os reds do site seguem os tons vivos do mockup.
    */
-  --color-medicar-wine: #6b1015;
-  --color-medicar-wine-soft: #7c1820; /* hover/superfícies sobre o vinho */
+  --color-medicar-wine: #971619;
 
   /*
-   * Tipografia — par serif display + sans (adendo dos prints).
-   * --font-display: Lora (serifada editorial). Os prints da agência usam, na
-   *   verdade, uma sans arredondada pesada nos títulos; o adendo determina
-   *   explicitamente uma serifada (regular, sem bold), então adotamos Lora como
-   *   a mais próxima do brief editorial.
-   *   TODO: substituir pela fonte original quando o arquivo for fornecido.
-   * --font-sans: DM Sans (grotesca neutra) para corpo, nav, botões e formulários.
-   * --font-rounded: Fredoka, apenas no wordmark do logo.
+   * Tipografia — Baloo 2 em todo o site (fonte arredondada pesada dos prints/
+   * mockup). Títulos em 700/800, corpo em 400/500. Uma única família,
+   * ecoando o wordmark arredondado do logo.
    */
-  --font-display: 'Lora Variable', 'Georgia', 'Times New Roman', serif;
-  --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, -apple-system,
+  --font-display: 'Baloo 2', ui-sans-serif, system-ui, -apple-system,
     'Segoe UI', Roboto, sans-serif;
-  --font-rounded: 'Fredoka Variable', var(--font-sans);
+  --font-sans: 'Baloo 2', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
 
   --text-caption: 13px;
   --text-caption--line-height: 1.4;
@@ -134,10 +126,9 @@ body {
 }
 
 /*
- * Títulos sempre na serifada display, peso regular (adendo dos prints):
- * ênfase por tamanho e cor, nunca por peso. Tracking levemente negativo,
- * nunca expandido. Em @layer base para que utilitários (text-white, etc.)
- * possam sobrepor cor/peso onde necessário (heros sobre foto, footer vinho).
+ * Títulos na Baloo 2 pesada (arredondada dos prints/mockup), peso 700.
+ * Em @layer base para que utilitários (text-white, font-*, etc.) possam
+ * sobrepor cor/peso onde necessário (heros sobre foto, footer vermelho).
  */
 @layer base {
   h1,
@@ -145,7 +136,7 @@ body {
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-bold);
     letter-spacing: -0.01em;
     color: var(--color-ink);
   }
@@ -153,15 +144,11 @@ body {
 
 .font-display {
   font-family: var(--font-display);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-bold);
 }
 
 .font-sans {
   font-family: var(--font-sans);
-}
-
-.font-rounded {
-  font-family: var(--font-rounded);
 }
 
 /* Foco visível consistente em todo o site */
