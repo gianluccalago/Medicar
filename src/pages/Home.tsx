@@ -10,12 +10,14 @@ import { BrazilMap } from '../components/BrazilMap'
 import { LogoStrip } from '../components/LogoStrip'
 import { TestimonialCard } from '../components/TestimonialCard'
 import { CtaBand } from '../components/CtaBand'
+import { SolutionIcon } from '../components/SolutionIcon'
 import { brandMessages, movedByLife, phones } from '../data/site'
 import { dispatchFlow } from '../data/services'
 import { coverageAreas, coverageNote } from '../data/bases'
 import { testimonials } from '../data/testimonials'
 import { posts } from '../data/posts'
-import { photos, servicePhotos } from '../assets/photos'
+import { solutions, solutionGroups, solutionsIntro } from '../data/solutions'
+import { photos } from '../assets/photos'
 
 const homeTestimonials = testimonials.filter((t) =>
   ['area-protegida', 'telemedicina'].includes(t.serviceSlug),
@@ -23,62 +25,6 @@ const homeTestimonials = testimonials.filter((t) =>
 
 /* Exatamente os 4 posts mais recentes na Home (adendo item 8). */
 const recentPosts = posts.slice(0, 4)
-
-/*
- * "Nossas Soluções" — conjunto curado com a copy literal do site oficial
- * (mistura B2B + B2C, inclui Lar Protegido, Medicar Pet e Gestão de Risco
- * Psicossocial 360º). Cada card revela a foto no hover.
- */
-const homeSolutions = [
-  {
-    title: 'Área Protegida',
-    desc: 'Segurança para seus funcionários, clientes e visitantes.',
-    to: '/solucoes/empresa/area-protegida',
-    photo: servicePhotos['area-protegida'],
-  },
-  {
-    title: 'Lar Protegido Medicar',
-    desc: 'Socorro e cuidado na sua casa para você, sua família e seus pets.',
-    to: '/solucoes/lar-protegido',
-    photo: photos.familia,
-  },
-  {
-    title: 'Medicar Pet',
-    desc: 'Veterinário disponível 24 horas por videochamada com uso ilimitado para cães e gatos.',
-    to: '/medicar-pet',
-    photo: photos.pet,
-  },
-  {
-    title: 'Telemedicina Medicar',
-    desc: 'Atendimento médico rápido, sem sair de casa ou do trabalho e sem filas em consultórios.',
-    to: '/solucoes/empresa/telemedicina',
-    photo: servicePhotos['telemedicina'],
-  },
-  {
-    title: 'Coletivo Empresarial',
-    desc: 'Proteção para seus colaboradores dentro e fora da empresa.',
-    to: '/solucoes/empresa/coletivo-empresarial',
-    photo: servicePhotos['coletivo-empresarial'],
-  },
-  {
-    title: 'Locação de Ambulâncias',
-    desc: 'Sua frota sem investimento inicial e sem dores de cabeça com administração.',
-    to: '/solucoes/empresa/locacao-de-ambulancia',
-    photo: servicePhotos['locacao-de-ambulancia'],
-  },
-  {
-    title: 'Gestão de Risco Psicossocial 360º',
-    desc: 'Programa de ações diagnósticas, preventivas e educativas para promover o bem-estar emocional e atender às normas da NR-1.',
-    to: '/solucoes/empresa/nr-1',
-    photo: servicePhotos['nr-1'],
-  },
-  {
-    title: 'Terceirização de Ambulatório',
-    desc: 'Deixe sua equipe focada no que realmente importa: seu negócio.',
-    to: '/solucoes/empresa/terceirizacao-de-ambulatorio',
-    photo: servicePhotos['terceirizacao-de-ambulatorio'],
-  },
-]
 
 export default function Home() {
   return (
@@ -205,50 +151,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Grid de soluções B2B */}
-      <section className="border-y border-line bg-surface">
-        <div className="mx-auto max-w-page px-4 py-section md:px-6">
-          <SectionHeading
-            eyebrow="Nossas soluções"
-            title="Nossas Soluções"
-            lead="A Medicar oferece soluções personalizadas para atender qualquer tipo de necessidade."
-          />
-          {/*
-            Cada card revela a foto do serviço no hover (desktop); no mobile a
-            foto aparece estática como fallback (adendo item 4). Único grid do
-            site com reveal em foto — as demais fotos não têm hover/zoom.
-          */}
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {homeSolutions.map((s, i) => (
-              <Reveal key={s.title} delay={(i % 4) * 0.06}>
-                <Link
-                  to={s.to}
-                  className="group relative flex h-full min-h-[220px] flex-col justify-end overflow-hidden rounded-card border border-line bg-canvas p-6 transition-colors hover:border-line-strong"
-                >
-                  <img
-                    src={s.photo}
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-100 transition-opacity duration-300 lg:opacity-0 lg:group-hover:opacity-100"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/45 to-ink/10 opacity-100 transition-opacity duration-300 lg:opacity-0 lg:group-hover:opacity-100"
-                  />
-                  <div className="relative">
-                    <h3 className="text-body-lg text-white lg:text-ink lg:group-hover:text-white">
-                      {s.title}
-                    </h3>
-                    <p className="mt-1.5 text-body-sm text-white/85 lg:text-ink-soft lg:group-hover:text-white/85">
-                      {s.desc}
-                    </p>
-                    <span className="mt-3 inline-block text-caption font-medium text-white lg:text-ink-muted lg:group-hover:text-white">
-                      Saiba mais →
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
+      {/* 4. Nossas Soluções — título à esquerda + grid agrupado por público */}
+      <section className="border-y border-line bg-canvas">
+        <div className="mx-auto grid max-w-page gap-10 px-4 py-section md:px-6 lg:grid-cols-[300px_1fr] lg:gap-12">
+          <Reveal>
+            <div className="lg:sticky lg:top-32">
+              <h2 className="text-heading-sm leading-[1.05] text-ink md:text-heading">
+                Nossas
+                <br />
+                Soluções
+              </h2>
+              <p className="mt-4 max-w-xs text-body-sm text-ink-soft">{solutionsIntro}</p>
+            </div>
+          </Reveal>
+
+          <div className="space-y-10">
+            {solutionGroups.map((group) => (
+              <div key={group.audience}>
+                <p className="text-caption font-medium uppercase tracking-[0.1em] text-ink-muted">
+                  {group.label}
+                </p>
+                <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {solutions
+                    .filter((s) => s.audience === group.audience)
+                    .map((s, i) => (
+                      <Reveal key={s.slug} delay={(i % 4) * 0.05}>
+                        <Link
+                          to={s.href}
+                          className="group flex h-full flex-col items-center rounded-card bg-surface p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:bg-canvas hover:shadow-[0_10px_28px_rgba(27,28,30,0.08)]"
+                        >
+                          <span className="text-medicar-red transition-transform duration-200 group-hover:scale-105">
+                            <SolutionIcon name={s.icon} size={38} />
+                          </span>
+                          <h3 className="mt-4 text-body font-medium text-ink">{s.title}</h3>
+                          <p className="mt-2 text-body-sm text-ink-soft">{s.description}</p>
+                        </Link>
+                      </Reveal>
+                    ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
