@@ -22,7 +22,7 @@ export function SectionHeading({ eyebrow, title, lead, align = 'left', onRed = f
         </p>
       )}
       <h2
-        className={`text-heading-sm font-medium md:text-heading ${onRed ? 'text-white' : 'text-ink'}`}
+        className={`text-heading-sm font-semi md:text-heading ${onRed ? 'text-white' : 'text-ink'}`}
       >
         {title}
       </h2>

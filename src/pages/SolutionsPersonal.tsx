@@ -5,6 +5,7 @@ import { SectionHeading } from '../components/SectionHeading'
 import { AsteriskMark } from '../components/AsteriskMark'
 import { CtaBand } from '../components/CtaBand'
 import { cardBenefits, priceTiers } from '../data/prices'
+import { photos } from '../assets/photos'
 
 /** Hub B2C — Cartão Medicar. */
 export default function SolutionsPersonal() {
@@ -16,12 +17,12 @@ export default function SolutionsPersonal() {
       />
 
       <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-page px-4 py-20 md:px-6 md:py-24">
+        <div className="mx-auto grid max-w-page items-center gap-10 px-4 py-16 md:px-6 md:py-20 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="max-w-2xl">
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Para você e sua família
             </p>
-            <h1 className="mt-3 text-heading-sm font-medium text-ink md:text-heading">
+            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
               Cartão Medicar: saúde ao seu alcance onde você estiver
             </h1>
             <p className="mt-5 text-body-lg text-ink-soft">
@@ -34,6 +35,15 @@ export default function SolutionsPersonal() {
               </ButtonLink>
             </div>
           </div>
+          <Reveal className="hidden lg:block">
+            <div className="relative flex items-end justify-center overflow-hidden rounded-card bg-gradient-to-br from-canvas to-red-wash">
+              <img
+                src={photos.familia}
+                alt="Pessoa cuidando da própria saúde com o Cartão Medicar"
+                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(27,28,30,0.14)]"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 

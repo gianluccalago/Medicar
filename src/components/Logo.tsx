@@ -7,19 +7,15 @@ interface LogoProps {
   withTagline?: boolean
 }
 
-/** Logo Medicar: asterisco 8 pontas + wordmark minúsculo + tagline. */
+/** Logo Medicar: asterisco 8 pontas + wordmark arredondado + tagline. */
 export function Logo({ variant = 'default', withTagline = true }: LogoProps) {
   const onRed = variant === 'onRed'
   return (
     <span className="inline-flex items-center gap-2.5">
-      {onRed ? (
-        <AsteriskMark size={34} variant="white" className="text-white" />
-      ) : (
-        <AsteriskMark size={34} />
-      )}
+      <AsteriskMark size={36} variant={onRed ? 'white' : 'brand'} />
       <span className="flex flex-col leading-none">
         <span
-          className={`text-[22px] font-semi tracking-[-0.02em] lowercase ${
+          className={`font-rounded text-[23px] font-semi lowercase leading-none tracking-[-0.01em] ${
             onRed ? 'text-white' : 'text-ink'
           }`}
         >
@@ -27,7 +23,7 @@ export function Logo({ variant = 'default', withTagline = true }: LogoProps) {
         </span>
         {withTagline && (
           <span
-            className={`mt-0.5 text-[10.5px] tracking-[0.02em] ${
+            className={`mt-1 text-[10.5px] tracking-[0.01em] ${
               onRed ? 'text-white/80' : 'text-ink-muted'
             }`}
           >

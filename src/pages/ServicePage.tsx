@@ -8,6 +8,7 @@ import { TestimonialCard } from '../components/TestimonialCard'
 import { CtaBand } from '../components/CtaBand'
 import { getService, services } from '../data/services'
 import { getTestimonial } from '../data/testimonials'
+import { servicePhotos } from '../assets/photos'
 import NotFound from './NotFound'
 
 /** Template das 8 páginas de serviço B2B. */
@@ -18,6 +19,7 @@ export default function ServicePage() {
 
   const testimonial = getTestimonial(service.slug)
   const others = services.filter((s) => s.slug !== service.slug).slice(0, 3)
+  const heroPhoto = servicePhotos[service.slug]
 
   return (
     <>
@@ -28,15 +30,15 @@ export default function ServicePage() {
 
       {/* Hero do serviço */}
       <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-page px-4 py-20 md:px-6 md:py-24">
-          <nav aria-label="Trilha de navegação" className="text-caption text-ink-muted">
-            <Link to="/solucoes/empresa" className="hover:text-ink">
-              Soluções para empresa
-            </Link>{' '}
-            / <span className="text-ink-soft">{service.cardTitle}</span>
-          </nav>
-          <div className="mt-6 max-w-2xl">
-            <h1 className="text-heading-sm font-medium text-ink md:text-heading">
+        <div className="mx-auto grid max-w-page items-center gap-8 px-4 py-16 md:px-6 md:py-20 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="max-w-2xl">
+            <nav aria-label="Trilha de navegação" className="text-caption text-ink-muted">
+              <Link to="/solucoes/empresa" className="hover:text-ink">
+                Soluções para empresa
+              </Link>{' '}
+              / <span className="text-ink-soft">{service.cardTitle}</span>
+            </nav>
+            <h1 className="mt-6 text-heading-sm font-semi text-ink md:text-heading">
               {service.headline}
             </h1>
             <p className="mt-5 text-body-lg text-ink-soft">{service.intro}</p>
@@ -49,6 +51,23 @@ export default function ServicePage() {
               </ButtonLink>
             </div>
           </div>
+          {heroPhoto && (
+            <Reveal className="hidden lg:block">
+              <div className="relative flex items-end justify-center overflow-hidden rounded-card bg-gradient-to-br from-canvas to-red-wash">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-[0.06]"
+                >
+                  <AsteriskMark variant="solid" size={340} className="absolute -right-16 -top-12" />
+                </div>
+                <img
+                  src={heroPhoto}
+                  alt={`Medicar — ${service.cardTitle}`}
+                  className="relative h-[380px] w-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(27,28,30,0.14)]"
+                />
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
 

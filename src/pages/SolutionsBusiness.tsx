@@ -7,6 +7,7 @@ import { AsteriskMark } from '../components/AsteriskMark'
 import { LogoStrip } from '../components/LogoStrip'
 import { CtaBand } from '../components/CtaBand'
 import { services } from '../data/services'
+import { photos } from '../assets/photos'
 
 /** Hub B2B — as 8 soluções para empresas. */
 export default function SolutionsBusiness() {
@@ -18,12 +19,12 @@ export default function SolutionsBusiness() {
       />
 
       <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-page px-4 py-20 md:px-6 md:py-24">
+        <div className="mx-auto grid max-w-page items-center gap-10 px-4 py-16 md:px-6 md:py-20 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="max-w-2xl">
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Para sua empresa
             </p>
-            <h1 className="mt-3 text-heading-sm font-medium text-ink md:text-heading">
+            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
               A saúde da sua operação, de ponta a ponta
             </h1>
             <p className="mt-5 text-body-lg text-ink-soft">
@@ -36,6 +37,15 @@ export default function SolutionsBusiness() {
               </ButtonLink>
             </div>
           </div>
+          <Reveal className="hidden lg:block">
+            <div className="relative flex items-end justify-center overflow-hidden rounded-card bg-gradient-to-br from-canvas to-red-wash">
+              <img
+                src={photos.ambulance}
+                alt="Ambulância Medicar, frota que atende empresas em todo o Brasil"
+                className="w-full max-w-md object-contain drop-shadow-[0_16px_32px_rgba(27,28,30,0.14)]"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 

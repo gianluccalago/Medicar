@@ -105,7 +105,7 @@ export default function Contact() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Contato
             </p>
-            <h1 className="mt-3 text-heading-sm font-medium text-ink md:text-heading">
+            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
               Vamos conversar?
             </h1>
             <p className="mt-4 text-body-lg text-ink-soft">

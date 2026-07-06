@@ -1,15 +1,15 @@
 import { Seo } from '../components/Seo'
 import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
+import { StatsBand } from '../components/StatsBand'
 import { AsteriskMark } from '../components/AsteriskMark'
 import { BrazilMap } from '../components/BrazilMap'
 import { LogoStrip } from '../components/LogoStrip'
 import { CtaBand } from '../components/CtaBand'
-import { Counter } from '../components/Counter'
 import { company, movedByLife, values, brandMessages } from '../data/site'
 import { timeline } from '../data/timeline'
 import { bases, coverageAreas, coverageNote } from '../data/bases'
-import { stats } from '../data/numbers'
+import { photos } from '../assets/photos'
 
 export default function About() {
   return (
@@ -20,12 +20,12 @@ export default function About() {
       />
 
       <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-page px-4 py-20 md:px-6 md:py-24">
+        <div className="mx-auto grid max-w-page items-center gap-10 px-4 py-16 md:px-6 md:py-20 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="max-w-2xl">
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Sobre nós
             </p>
-            <h1 className="mt-3 text-heading-sm font-medium text-ink md:text-heading">
+            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
               Mais de 30 anos salvando vidas pelo Brasil
             </h1>
             <p className="mt-5 text-body-lg text-ink-soft">
@@ -34,34 +34,33 @@ export default function About() {
               soluções de saúde para pessoas e empresas.
             </p>
           </div>
+          <Reveal className="hidden lg:block">
+            <div className="relative flex items-end justify-center overflow-hidden rounded-card bg-gradient-to-br from-canvas to-red-wash">
+              <img
+                src={photos.team}
+                alt="Equipe Medicar: profissionais de saúde e resgate lado a lado"
+                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(27,28,30,0.14)]"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Números */}
-      <section aria-label="Grandes números" className="mx-auto max-w-page px-4 py-16 md:px-6">
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-7">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.05}>
-              <div className="flex flex-col gap-1">
-                <dt className="order-2 text-caption text-ink-muted">{s.label}</dt>
-                <dd className="order-1 text-heading-sm font-medium text-ink">
-                  <Counter
-                    value={s.value}
-                    prefix={s.prefix}
-                    suffix={s.suffix}
-                    decimals={s.decimals ?? 0}
-                  />
-                </dd>
-              </div>
-            </Reveal>
-          ))}
-        </dl>
+      {/* Números — 5 grandes números com contexto */}
+      <section aria-label="Grandes números" className="mx-auto max-w-page px-4 py-section md:px-6">
+        <SectionHeading
+          eyebrow="Grandes números"
+          title="A escala de quem cuida do Brasil"
+        />
+        <div className="mt-10">
+          <StatsBand />
+        </div>
       </section>
 
       {/* Movidos pela vida — faixa de missão (vermelho full-bleed) */}
       <section className="relative overflow-hidden bg-medicar-red">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 text-white/12">
-          <AsteriskMark variant="white" size={420} className="absolute -right-28 -top-28 rotate-12" />
+          <AsteriskMark variant="white" size={420} className="absolute -right-28 -top-28 rotate-12 opacity-[0.13]" />
         </div>
         <div className="relative mx-auto max-w-page px-4 py-section md:px-6">
           <SectionHeading eyebrow="Nosso propósito" title={brandMessages.movedByLife} onRed />

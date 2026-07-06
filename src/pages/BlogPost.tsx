@@ -21,7 +21,7 @@ export default function BlogPost() {
           </Link>{' '}
           / <span className="text-ink-soft">{post.category}</span>
         </nav>
-        <h1 className="mt-4 text-heading-sm font-medium text-ink md:text-heading">{post.title}</h1>
+        <h1 className="mt-4 text-heading-sm font-semi text-ink md:text-heading">{post.title}</h1>
         <p className="mt-4 text-body-lg text-ink-soft">{post.excerpt}</p>
 
         <div className="mt-10 rounded-card border border-line bg-surface p-6">

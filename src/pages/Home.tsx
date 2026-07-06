@@ -3,18 +3,18 @@ import { Seo } from '../components/Seo'
 import { HeroVideo } from '../components/HeroVideo'
 import { ButtonLink } from '../components/Buttons'
 import { Reveal } from '../components/Reveal'
-import { Counter } from '../components/Counter'
 import { SectionHeading } from '../components/SectionHeading'
+import { StatsBand } from '../components/StatsBand'
 import { AsteriskMark } from '../components/AsteriskMark'
 import { BrazilMap } from '../components/BrazilMap'
 import { LogoStrip } from '../components/LogoStrip'
 import { TestimonialCard } from '../components/TestimonialCard'
 import { CtaBand } from '../components/CtaBand'
 import { brandMessages, movedByLife, phones } from '../data/site'
-import { stats } from '../data/numbers'
 import { services, dispatchFlow } from '../data/services'
 import { coverageAreas, coverageNote } from '../data/bases'
 import { testimonials } from '../data/testimonials'
+import { photos } from '../assets/photos'
 
 const homeTestimonials = testimonials.filter((t) =>
   ['area-protegida', 'telemedicina'].includes(t.serviceSlug),
@@ -34,7 +34,7 @@ export default function Home() {
         <HeroVideo />
         <div className="relative mx-auto w-full max-w-page px-4 py-24 md:px-6">
           <div className="max-w-xl">
-            <h1 className="text-heading font-medium text-white md:text-heading-lg">
+            <h1 className="text-heading font-semi text-white md:text-heading-lg">
               {brandMessages.hero}
             </h1>
             <p className="mt-5 text-body-lg text-white/90">{brandMessages.heroSub}</p>
@@ -60,26 +60,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Faixa de números */}
-      <section aria-label="Grandes números da Medicar" className="border-b border-line bg-canvas">
-        <div className="mx-auto max-w-page px-4 py-16 md:px-6">
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-7">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.05}>
-                <div className="flex flex-col gap-1">
-                  <dt className="order-2 text-caption text-ink-muted">{s.label}</dt>
-                  <dd className="order-1 text-heading-sm font-medium text-ink">
-                    <Counter
-                      value={s.value}
-                      prefix={s.prefix}
-                      suffix={s.suffix}
-                      decimals={s.decimals ?? 0}
-                    />
-                  </dd>
-                </div>
-              </Reveal>
-            ))}
-          </dl>
+      {/* 2. Faixa de números — 5 grandes números com contexto */}
+      <section aria-label="Grandes números da Medicar" className="border-b border-line bg-surface">
+        <div className="mx-auto max-w-page px-4 py-20 md:px-6">
+          <SectionHeading
+            eyebrow="Grandes números"
+            title="A escala de quem cuida do Brasil há mais de 30 anos"
+          />
+          <div className="mt-10">
+            <StatsBand />
+          </div>
         </div>
       </section>
 
@@ -94,41 +84,61 @@ export default function Home() {
           <Reveal>
             <Link
               to="/solucoes/empresa"
-              className="group flex h-full flex-col rounded-card border border-line bg-canvas p-8 transition-colors hover:border-line-strong hover:bg-surface"
+              className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-canvas transition-colors hover:border-line-strong"
             >
-              <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
-                Para sua empresa
-              </p>
-              <h3 className="mt-3 text-subheading font-medium text-ink">
-                Proteja quem faz o seu negócio acontecer
-              </h3>
-              <p className="mt-3 flex-1 text-body-sm text-ink-soft">
-                Área protegida, urgência e emergência 24h, telemedicina, ambulatórios, frota e
-                remoções — soluções sob medida para operações de qualquer porte.
-              </p>
-              <span className="mt-6 text-body-sm font-medium text-ink group-hover:text-medicar-red-deep">
-                Conhecer as 8 soluções →
-              </span>
+              <div className="relative flex h-52 items-end justify-center overflow-hidden bg-gradient-to-br from-surface to-red-wash">
+                <img
+                  src={photos.areaProtegida}
+                  alt="Profissional Medicar em frente a uma ambulância, representando as soluções para empresas"
+                  loading="lazy"
+                  className="h-[112%] w-auto object-contain object-bottom drop-shadow-[0_12px_24px_rgba(27,28,30,0.12)] transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-8">
+                <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
+                  Para sua empresa
+                </p>
+                <h3 className="mt-3 text-subheading font-semi text-ink">
+                  Proteja quem faz o seu negócio acontecer
+                </h3>
+                <p className="mt-3 flex-1 text-body-sm text-ink-soft">
+                  Área protegida, urgência e emergência 24h, telemedicina, ambulatórios, frota e
+                  remoções — soluções sob medida para operações de qualquer porte.
+                </p>
+                <span className="mt-6 text-body-sm font-medium text-ink group-hover:text-medicar-red-deep">
+                  Conhecer as 8 soluções →
+                </span>
+              </div>
             </Link>
           </Reveal>
           <Reveal delay={0.08}>
             <Link
               to="/solucoes/para-voce"
-              className="group flex h-full flex-col rounded-card border border-line bg-canvas p-8 transition-colors hover:border-line-strong hover:bg-surface"
+              className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-canvas transition-colors hover:border-line-strong"
             >
-              <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
-                Para você e sua família
-              </p>
-              <h3 className="mt-3 text-subheading font-medium text-ink">
-                Cartão Medicar: saúde ao seu alcance
-              </h3>
-              <p className="mt-3 flex-1 text-body-sm text-ink-soft">
-                Telemedicina 24h, UTIs móveis, consultas a partir de R$ 29,00 e descontos em
-                exames e medicamentos — por uma mensalidade de associado.
-              </p>
-              <span className="mt-6 text-body-sm font-medium text-ink group-hover:text-medicar-red-deep">
-                Conhecer o Cartão Medicar →
-              </span>
+              <div className="relative flex h-52 items-end justify-center overflow-hidden bg-gradient-to-br from-surface to-red-wash">
+                <img
+                  src={photos.familia}
+                  alt="Senhor sorridente representando o cuidado com você e sua família"
+                  loading="lazy"
+                  className="h-[112%] w-auto object-contain object-bottom drop-shadow-[0_12px_24px_rgba(27,28,30,0.12)] transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-8">
+                <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
+                  Para você e sua família
+                </p>
+                <h3 className="mt-3 text-subheading font-semi text-ink">
+                  Cartão Medicar: saúde ao seu alcance
+                </h3>
+                <p className="mt-3 flex-1 text-body-sm text-ink-soft">
+                  Telemedicina 24h, UTIs móveis, consultas a partir de R$ 29,00 e descontos em
+                  exames e medicamentos — por uma mensalidade de associado.
+                </p>
+                <span className="mt-6 text-body-sm font-medium text-ink group-hover:text-medicar-red-deep">
+                  Conhecer o Cartão Medicar →
+                </span>
+              </div>
             </Link>
           </Reveal>
         </div>
@@ -165,8 +175,8 @@ export default function Home() {
       {/* 5. Movidos pela vida — faixa vermelha com motivo do asterisco */}
       <section className="relative overflow-hidden bg-medicar-red">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 text-white/12">
-          <AsteriskMark variant="white" size={480} className="absolute -left-32 -top-40 rotate-12" />
-          <AsteriskMark variant="white" size={300} className="absolute -bottom-24 right-10 -rotate-12" />
+          <AsteriskMark variant="white" size={480} className="absolute -left-32 -top-40 rotate-12 opacity-[0.13]" />
+          <AsteriskMark variant="white" size={300} className="absolute -bottom-24 right-10 -rotate-12 opacity-[0.13]" />
         </div>
         <div className="relative mx-auto max-w-page px-4 py-section md:px-6">
           <SectionHeading eyebrow="Nosso propósito" title={brandMessages.movedByLife} onRed />
@@ -253,22 +263,32 @@ export default function Home() {
       {/* 9. Medicar Pet teaser */}
       <section className="mx-auto max-w-page px-4 pb-section md:px-6">
         <Reveal>
-          <div className="flex flex-col items-start justify-between gap-6 rounded-card border border-line bg-surface p-8 md:flex-row md:items-center md:p-10">
-            <div className="max-w-xl">
+          <div className="grid items-center gap-8 overflow-hidden rounded-card border border-line bg-surface md:grid-cols-2">
+            <div className="p-8 md:p-10">
               <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
                 Medicar Pet
               </p>
-              <h2 className="mt-2 text-subheading font-medium text-ink md:text-heading-sm">
+              <h2 className="mt-2 text-subheading font-semi text-ink md:text-heading-sm">
                 Teleorientação veterinária 24h para cães e gatos
               </h2>
               <p className="mt-3 text-body-sm text-ink-soft">
                 Orientação on-line sem limite de uso, em qualquer lugar do Brasil — sem o estresse
                 de transporte do seu pet.
               </p>
+              <div className="mt-6">
+                <ButtonLink to="/medicar-pet" variant="ghost">
+                  Conhecer o Medicar Pet →
+                </ButtonLink>
+              </div>
             </div>
-            <ButtonLink to="/medicar-pet" variant="ghost">
-              Conhecer o Medicar Pet →
-            </ButtonLink>
+            <div className="flex h-full items-end justify-center self-end px-8 pt-4 md:px-0">
+              <img
+                src={photos.pet}
+                alt="Um cão e um gato, atendidos pela teleorientação veterinária Medicar Pet"
+                loading="lazy"
+                className="h-auto w-full max-w-sm object-contain"
+              />
+            </div>
           </div>
         </Reveal>
       </section>

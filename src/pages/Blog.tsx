@@ -18,7 +18,7 @@ export default function Blog() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Blog
             </p>
-            <h1 className="mt-3 text-heading-sm font-medium text-ink md:text-heading">
+            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
               Saúde, segurança e gestão em dia
             </h1>
           </div>

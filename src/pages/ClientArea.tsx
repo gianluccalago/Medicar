@@ -46,7 +46,7 @@ export default function ClientArea() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Área do cliente
             </p>
-            <h1 className="mt-3 text-heading-sm font-medium text-ink md:text-heading">
+            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
               Seus serviços, a um clique
             </h1>
             <p className="mt-4 text-body-lg text-ink-soft">

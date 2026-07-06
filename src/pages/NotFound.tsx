@@ -11,7 +11,7 @@ export default function NotFound() {
       />
       <section className="mx-auto flex max-w-page flex-col items-center px-4 py-32 text-center md:px-6">
         <AsteriskMark size={48} />
-        <h1 className="mt-6 text-heading-sm font-medium text-ink">Página não encontrada</h1>
+        <h1 className="mt-6 text-heading-sm font-semi text-ink">Página não encontrada</h1>
         <p className="mt-3 max-w-md text-body-sm text-ink-soft">
           O endereço que você acessou não existe ou foi movido. Que tal voltar para o início?
         </p>

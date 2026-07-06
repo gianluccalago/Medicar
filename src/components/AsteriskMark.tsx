@@ -1,41 +1,54 @@
 interface AsteriskMarkProps {
   size?: number
-  /** 'brand' = pás vermelhas + pá horizontal cinza · 'white' = outline branco (fundos vermelhos) */
-  variant?: 'brand' | 'white'
+  /**
+   * 'brand' = 8 pás em burst (diagonais vermelhas, ortogonais cinza) + hub — logo oficial
+   * 'white' = todas as pás brancas, para fundos vermelhos
+   * 'solid' = todas as pás no vermelho da marca (motivo decorativo mono)
+   */
+  variant?: 'brand' | 'white' | 'solid'
   className?: string
 }
 
-/** Asterisco Medicar de 8 pontas, recriado em SVG fiel ao logo do vídeo. */
+/*
+ * Asterisco Medicar de 8 pontas, reconstruído em SVG a partir do logo oficial
+ * (apresentação institucional): 8 pás em pílula irradiando de um hub central,
+ * a 45° cada. Na versão colorida, as pás diagonais são vermelhas e as
+ * ortogonais são cinza-grafite.
+ */
+const W = 14
+const Y0 = 9
+const Y1 = 46
+const RX = W / 2
+
 export function AsteriskMark({ size = 32, variant = 'brand', className }: AsteriskMarkProps) {
-  const blade = { x: 27.5, y: 6, width: 9, height: 52, rx: 4.5 }
-  if (variant === 'white') {
+  const blades = Array.from({ length: 8 }, (_, k) => {
+    let fill: string
+    if (variant === 'white') fill = '#ffffff'
+    else if (variant === 'solid') fill = 'var(--color-medicar-red)'
+    else fill = k % 2 === 1 ? 'var(--color-medicar-red)' : 'var(--color-brand-gray)'
     return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 64 64"
-        aria-hidden="true"
-        className={className}
-      >
-        {[0, 45, 90, 135].map((angle) => (
-          <rect
-            key={angle}
-            {...blade}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            transform={angle ? `rotate(${angle} 32 32)` : undefined}
-          />
-        ))}
-      </svg>
+      <rect
+        key={k}
+        x={50 - W / 2}
+        y={Y0}
+        width={W}
+        height={Y1 - Y0}
+        rx={RX}
+        fill={fill}
+        transform={`rotate(${k * 45} 50 50)`}
+      />
     )
-  }
+  })
+  const hub =
+    variant === 'white'
+      ? '#ffffff'
+      : variant === 'solid'
+        ? 'var(--color-medicar-red)'
+        : 'var(--color-brand-gray)'
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true" className={className}>
-      <rect {...blade} fill="var(--color-medicar-red)" />
-      <rect {...blade} fill="var(--color-medicar-red)" transform="rotate(45 32 32)" />
-      <rect {...blade} fill="var(--color-medicar-red)" transform="rotate(135 32 32)" />
-      <rect {...blade} fill="var(--color-brand-gray)" transform="rotate(90 32 32)" />
+    <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true" className={className}>
+      {blades}
+      <circle cx="50" cy="50" r="5" fill={hub} />
     </svg>
   )
 }
