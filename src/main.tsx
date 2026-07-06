@@ -2,10 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-// Fallback: Montserrat (grotesca geométrica próxima da Galano Grotesque Alt).
-// Quando os arquivos licenciados da Galano forem colocados em public/fonts/,
-// os @font-face em index.css assumem automaticamente (ver public/fonts/README).
-import '@fontsource-variable/montserrat/index.css'
+// Ubuntu (Google Fonts) — fonte do site. Pesos: Light 300, Regular 400,
+// Medium 500, Bold 700.
+import '@fontsource/ubuntu/300.css'
+import '@fontsource/ubuntu/400.css'
+import '@fontsource/ubuntu/500.css'
+import '@fontsource/ubuntu/700.css'
 import './index.css'
 import App from './App'
 

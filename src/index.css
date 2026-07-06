@@ -32,17 +32,14 @@
   --color-medicar-wine: #971619;
 
   /*
-   * Tipografia — GALANO GROTESQUE ALT em todo o site (padronização):
-   * Títulos: Black/Heavy/ExtraBold (800/900) · Títulos de card: Bold/ExtraBold
-   * (700/800) · Textos menores: Medium/Light (300/500).
-   * A fonte é comercial (René Bieder) e não pode ser embarcada aqui; os
-   * @font-face abaixo apontam para public/fonts/ (ver README). Fallback:
-   * Montserrat (grotesca geométrica livre próxima), até os arquivos chegarem.
+   * Tipografia — UBUNTU (Google Fonts) em todo o site:
+   * Títulos e títulos de card: Bold (700) · Textos menores: Medium (500) /
+   * Regular (400) · Light (300) onde couber. Uma única família.
    */
-  --font-display: 'Galano Grotesque Alt', 'Montserrat Variable', ui-sans-serif,
-    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-sans: 'Galano Grotesque Alt', 'Montserrat Variable', ui-sans-serif,
-    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Ubuntu', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+  --font-sans: 'Ubuntu', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
 
   --text-caption: 13px;
   --text-caption--line-height: 1.4;
@@ -113,48 +110,6 @@
   }
 }
 
-/*
- * Galano Grotesque Alt — fonte oficial (comercial, René Bieder).
- * Coloque os arquivos licenciados em public/fonts/ (ver README). Enquanto não
- * existirem, o navegador ignora estes src e cai para o fallback (Montserrat).
- * Pesos: Light 300 · Medium 500 · Bold 700 · ExtraBold 800 · Black/Heavy 900.
- */
-@font-face {
-  font-family: 'Galano Grotesque Alt';
-  src: url('/fonts/GalanoGrotesqueAlt-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Galano Grotesque Alt';
-  src: url('/fonts/GalanoGrotesqueAlt-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Galano Grotesque Alt';
-  src: url('/fonts/GalanoGrotesqueAlt-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Galano Grotesque Alt';
-  src: url('/fonts/GalanoGrotesqueAlt-ExtraBold.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Galano Grotesque Alt';
-  src: url('/fonts/GalanoGrotesqueAlt-Black.woff2') format('woff2');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -167,7 +122,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  font-weight: var(--font-weight-medium); /* textos menores em Medium (Galano) */
+  font-weight: var(--font-weight-regular); /* textos menores em Regular (Ubuntu) */
   background: var(--color-canvas);
   color: var(--color-ink-soft);
   -webkit-font-smoothing: antialiased;
@@ -175,9 +130,7 @@ body {
 }
 
 /*
- * Padronização de pesos (Galano Grotesque Alt):
- * - Títulos principais (h1/h2): ExtraBold/Black → 800
- * - Títulos de card (h3/h4): Bold → 700
+ * Padronização de pesos (Ubuntu): todos os títulos (h1–h4) em Bold (700).
  * Em @layer base para que utilitários (text-white, font-*) possam sobrepor.
  */
 @layer base {
@@ -186,22 +139,15 @@ body {
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    color: var(--color-ink);
-  }
-  h1,
-  h2 {
-    font-weight: var(--font-weight-extrabold);
-  }
-  h3,
-  h4 {
     font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
   }
 }
 
 .font-display {
   font-family: var(--font-display);
-  font-weight: var(--font-weight-extrabold);
+  font-weight: var(--font-weight-bold);
 }
 
 .font-sans {
