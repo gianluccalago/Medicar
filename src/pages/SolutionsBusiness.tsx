@@ -24,7 +24,7 @@ export default function SolutionsBusiness() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Para sua empresa
             </p>
-            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
+ <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
               A saúde da sua operação, de ponta a ponta
             </h1>
             <p className="mt-5 text-body-lg text-ink-soft">
@@ -63,7 +63,7 @@ export default function SolutionsBusiness() {
               >
                 <div className="flex items-center gap-3">
                   <AsteriskMark size={22} />
-                  <h2 className="text-body-lg font-medium text-ink">{s.cardTitle}</h2>
+ <h2 className="text-body-lg text-ink">{s.cardTitle}</h2>
                 </div>
                 <p className="mt-3 flex-1 text-body-sm text-ink-soft">{s.summary}</p>
                 <span className="mt-5 text-body-sm font-medium text-ink-muted group-hover:text-medicar-red-deep">

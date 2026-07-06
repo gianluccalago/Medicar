@@ -18,7 +18,7 @@ export default function Blog() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Blog
             </p>
-            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
+ <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
               Saúde, segurança e gestão em dia
             </h1>
           </div>
@@ -43,7 +43,7 @@ export default function Blog() {
                 <span className="mt-4 inline-flex self-start rounded-badge bg-surface px-1.5 py-0.5 text-[11px] font-medium text-ink-muted">
                   {p.category}
                 </span>
-                <h2 className="mt-3 flex-1 text-body font-medium text-ink group-hover:text-medicar-red-deep">
+ <h2 className="mt-3 flex-1 text-body text-ink group-hover:text-medicar-red-deep">
                   {p.title}
                 </h2>
                 <p className="mt-2 text-body-sm text-ink-soft">{p.excerpt}</p>

@@ -8,6 +8,7 @@ const About = lazy(() => import('./pages/About'))
 const SolutionsBusiness = lazy(() => import('./pages/SolutionsBusiness'))
 const ServicePage = lazy(() => import('./pages/ServicePage'))
 const SolutionsPersonal = lazy(() => import('./pages/SolutionsPersonal'))
+const LarProtegido = lazy(() => import('./pages/LarProtegido'))
 const Clinic = lazy(() => import('./pages/Clinic'))
 const Pet = lazy(() => import('./pages/Pet'))
 const Blog = lazy(() => import('./pages/Blog'))
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="solucoes/empresa" element={<SolutionsBusiness />} />
         <Route path="solucoes/empresa/:slug" element={<ServicePage />} />
         <Route path="solucoes/para-voce" element={<SolutionsPersonal />} />
+        <Route path="solucoes/lar-protegido" element={<LarProtegido />} />
         <Route path="clinica-medicar" element={<Clinic />} />
         <Route path="medicar-pet" element={<Pet />} />
         <Route path="blog" element={<Blog />} />

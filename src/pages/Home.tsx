@@ -14,11 +14,15 @@ import { brandMessages, movedByLife, phones } from '../data/site'
 import { services, dispatchFlow } from '../data/services'
 import { coverageAreas, coverageNote } from '../data/bases'
 import { testimonials } from '../data/testimonials'
-import { photos } from '../assets/photos'
+import { posts } from '../data/posts'
+import { photos, servicePhotos } from '../assets/photos'
 
 const homeTestimonials = testimonials.filter((t) =>
   ['area-protegida', 'telemedicina'].includes(t.serviceSlug),
 )
+
+/* Exatamente os 4 posts mais recentes na Home (adendo item 8). */
+const recentPosts = posts.slice(0, 4)
 
 export default function Home() {
   return (
@@ -34,7 +38,7 @@ export default function Home() {
         <HeroVideo />
         <div className="relative mx-auto w-full max-w-page px-4 py-24 md:px-6">
           <div className="max-w-xl">
-            <h1 className="text-heading font-semi text-white md:text-heading-lg">
+ <h1 className="text-heading text-white md:text-heading-lg">
               {brandMessages.hero}
             </h1>
             <p className="mt-5 text-body-lg text-white/90">{brandMessages.heroSub}</p>
@@ -98,7 +102,7 @@ export default function Home() {
                 <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
                   Para sua empresa
                 </p>
-                <h3 className="mt-3 text-subheading font-semi text-ink">
+ <h3 className="mt-3 text-subheading text-ink">
                   Proteja quem faz o seu negócio acontecer
                 </h3>
                 <p className="mt-3 flex-1 text-body-sm text-ink-soft">
@@ -106,7 +110,7 @@ export default function Home() {
                   remoções — soluções sob medida para operações de qualquer porte.
                 </p>
                 <span className="mt-6 text-body-sm font-medium text-ink group-hover:text-medicar-red-deep">
-                  Conhecer as 8 soluções →
+                  Conhecer as soluções →
                 </span>
               </div>
             </Link>
@@ -128,7 +132,7 @@ export default function Home() {
                 <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
                   Para você e sua família
                 </p>
-                <h3 className="mt-3 text-subheading font-semi text-ink">
+ <h3 className="mt-3 text-subheading text-ink">
                   Cartão Medicar: saúde ao seu alcance
                 </h3>
                 <p className="mt-3 flex-1 text-body-sm text-ink-soft">
@@ -148,23 +152,44 @@ export default function Home() {
       <section className="border-y border-line bg-surface">
         <div className="mx-auto max-w-page px-4 py-section md:px-6">
           <SectionHeading
-            eyebrow="Soluções para empresas"
-            title="Oito soluções, um só parceiro"
+            eyebrow="Nossas soluções"
+            title="Soluções que se combinam, um só parceiro"
             lead="Tudo o que a sua operação precisa em saúde, com a retaguarda de quem é referência em emergências há mais de 30 anos."
           />
+          {/*
+            Cada card revela a foto do serviço no hover (desktop); no mobile a
+            foto aparece estática como fallback (adendo item 4). Único grid do
+            site com reveal em foto — as demais fotos não têm hover/zoom.
+          */}
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((s, i) => (
               <Reveal key={s.slug} delay={(i % 4) * 0.06}>
                 <Link
                   to={`/solucoes/empresa/${s.slug}`}
-                  className="group flex h-full flex-col rounded-card border border-line bg-canvas p-6 transition-colors hover:border-line-strong"
+                  className="group relative flex h-full min-h-[220px] flex-col justify-end overflow-hidden rounded-card border border-line bg-canvas p-6 transition-colors hover:border-line-strong"
                 >
-                  <AsteriskMark size={22} />
-                  <h3 className="mt-4 text-body font-medium text-ink">{s.cardTitle}</h3>
-                  <p className="mt-2 flex-1 text-body-sm text-ink-soft">{s.summary}</p>
-                  <span className="mt-4 text-caption font-medium text-ink-muted group-hover:text-medicar-red-deep">
-                    Saiba mais →
-                  </span>
+                  <img
+                    src={servicePhotos[s.slug]}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-100 transition-opacity duration-300 lg:opacity-0 lg:group-hover:opacity-100"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/45 to-ink/10 opacity-100 transition-opacity duration-300 lg:opacity-0 lg:group-hover:opacity-100"
+                  />
+                  <div className="relative">
+                    <h3 className="text-body-lg text-white lg:text-ink lg:group-hover:text-white">
+                      {s.cardTitle}
+                    </h3>
+                    <p className="mt-1.5 text-body-sm text-white/85 lg:text-ink-soft lg:group-hover:text-white/85">
+                      {s.summary}
+                    </p>
+                    <span className="mt-3 inline-block text-caption font-medium text-white lg:text-ink-muted lg:group-hover:text-white">
+                      Saiba mais →
+                    </span>
+                  </div>
                 </Link>
               </Reveal>
             ))}
@@ -184,7 +209,7 @@ export default function Home() {
             {movedByLife.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.08}>
                 <div className="border-t border-white/30 pt-5">
-                  <h3 className="text-subheading font-medium text-white">{item.title}</h3>
+ <h3 className="text-subheading text-white">{item.title}</h3>
                   <p className="mt-3 text-body-sm text-white/85">{item.text}</p>
                 </div>
               </Reveal>
@@ -207,7 +232,7 @@ export default function Home() {
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-red-wash text-body-sm font-semi text-medicar-red-deep">
                   {i + 1}
                 </span>
-                <h3 className="mt-4 text-body font-medium text-ink">{step.title}</h3>
+ <h3 className="mt-4 text-body text-ink">{step.title}</h3>
                 <p className="mt-2 text-body-sm text-ink-soft">{step.text}</p>
               </li>
             </Reveal>
@@ -260,6 +285,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 8b. Blog — 4 posts mais recentes, cards compactos */}
+      <section className="border-t border-line bg-surface">
+        <div className="mx-auto max-w-page px-4 py-section md:px-6">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading eyebrow="Blog" title="Conteúdo para cuidar melhor" />
+            <Reveal>
+              <Link
+                to="/blog"
+                className="text-body-sm font-medium text-medicar-red-deep hover:underline"
+              >
+                Ver todos os posts →
+              </Link>
+            </Reveal>
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {recentPosts.map((p, i) => (
+              <Reveal key={p.slug} delay={(i % 4) * 0.05}>
+                <Link
+                  to={`/blog/${p.slug}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-canvas transition-colors hover:border-line-strong"
+                >
+                  {/* Thumb 16:9 com motivo do asterisco (placeholder — sem cortar conteúdo) */}
+                  <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-red-wash to-surface">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <AsteriskMark size={40} className="opacity-50" />
+                    </div>
+                    <span className="absolute left-3 top-3 rounded-badge bg-canvas/85 px-1.5 py-0.5 text-[11px] font-medium text-medicar-red-deep">
+                      {p.category}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    <h3 className="text-body-sm leading-snug text-ink group-hover:text-medicar-red-deep">
+                      {p.title}
+                    </h3>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 9. Medicar Pet teaser */}
       <section className="mx-auto max-w-page px-4 pb-section md:px-6">
         <Reveal>
@@ -268,7 +335,7 @@ export default function Home() {
               <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
                 Medicar Pet
               </p>
-              <h2 className="mt-2 text-subheading font-semi text-ink md:text-heading-sm">
+ <h2 className="mt-2 text-subheading text-ink md:text-heading-sm">
                 Teleorientação veterinária 24h para cães e gatos
               </h2>
               <p className="mt-3 text-body-sm text-ink-soft">

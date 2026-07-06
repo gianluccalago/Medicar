@@ -21,7 +21,7 @@ export default function BlogPost() {
           </Link>{' '}
           / <span className="text-ink-soft">{post.category}</span>
         </nav>
-        <h1 className="mt-4 text-heading-sm font-semi text-ink md:text-heading">{post.title}</h1>
+ <h1 className="mt-4 text-heading-sm text-ink md:text-heading">{post.title}</h1>
         <p className="mt-4 text-body-lg text-ink-soft">{post.excerpt}</p>
 
         <div className="mt-10 rounded-card border border-line bg-surface p-6">
@@ -40,7 +40,7 @@ export default function BlogPost() {
 
       <section className="border-t border-line">
         <div className="mx-auto max-w-page px-4 py-16 md:px-6">
-          <h2 className="text-body-lg font-medium text-ink">Leia também</h2>
+ <h2 className="text-body-lg text-ink">Leia também</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {related.map((p) => (
               <Link
@@ -51,7 +51,7 @@ export default function BlogPost() {
                 <span className="inline-flex rounded-badge bg-surface px-1.5 py-0.5 text-[11px] font-medium text-ink-muted">
                   {p.category}
                 </span>
-                <h3 className="mt-2 text-body-sm font-medium text-ink group-hover:text-medicar-red-deep">
+ <h3 className="mt-2 text-body-sm text-ink group-hover:text-medicar-red-deep">
                   {p.title}
                 </h3>
               </Link>

@@ -32,6 +32,8 @@ export interface Service {
   stepsTitle?: string
   /** Frase de assinatura da página */
   signature?: string
+  /** Copy rascunhada, pendente de aprovação da Medicar (exibe aviso) */
+  pendingApproval?: boolean
 }
 
 /** Fluxo de acionamento da Central 24h — usado na Home e na página de urgência. */
@@ -392,7 +394,81 @@ export const services: readonly Service[] = [
     },
     signature: 'Em terra ou no ar, conte sempre com a Medicar.',
   },
+  {
+    // PENDENTE APROVAÇÃO MEDICAR — copy rascunhada de forma conservadora.
+    // Não afirmar certificações; não citar prazos legais específicos.
+    slug: 'nr-1',
+    name: 'NR-1 e gestão de riscos ocupacionais',
+    cardTitle: 'NR-1',
+    summary:
+      'Parceira na adequação à NR-1: apoio à gestão de riscos ocupacionais, inclusive os psicossociais.',
+    headline: 'Apoio à adequação à NR-1',
+    intro:
+      'A Medicar apoia a sua empresa na jornada de adequação à NR-1, conectando a atenção à saúde e à segurança dos colaboradores — inclusive os riscos psicossociais — ao seu Gerenciamento de Riscos Ocupacionais (GRO) e ao PGR.',
+    benefits: [
+      {
+        title: 'Riscos psicossociais no radar',
+        text: 'Apoio à atenção a fatores psicossociais do ambiente de trabalho, com telemedicina e orientação médica.',
+      },
+      {
+        title: 'Integração ao GRO/PGR',
+        text: 'Soluções que se conectam ao Gerenciamento de Riscos Ocupacionais e ao PGR da sua empresa.',
+      },
+      {
+        title: 'Atenção à saúde no local',
+        text: 'Área Protegida e ambulatórios levam resposta e cuidado para dentro da operação.',
+      },
+      {
+        title: 'Cuidado contínuo',
+        text: 'Telemedicina 24h e Orientação Médica por Telefone apoiam o acompanhamento dos colaboradores.',
+      },
+    ],
+    detail: {
+      title: 'Como a Medicar apoia a sua gestão',
+      text: 'Combinamos Área Protegida, Telemedicina, OMT e ambulatórios para apoiar a sua gestão de riscos ocupacionais. A responsabilidade técnica pela adequação permanece com a empresa e seus profissionais de SST.',
+    },
+    pendingApproval: true,
+  },
 ]
+
+/**
+ * Lar Protegido — serviço residencial (rota própria /solucoes/lar-protegido).
+ * Fora do array `services` de empresa; usa o mesmo template.
+ * PENDENTE APROVAÇÃO MEDICAR — copy conservadora, sem preço.
+ */
+export const larProtegido: Service = {
+  slug: 'lar-protegido',
+  name: 'Lar Protegido Medicar',
+  cardTitle: 'Lar Protegido',
+  summary:
+    'A lógica da Área Protegida aplicada ao lar: emergência com UTI móvel 24h para a sua família.',
+  headline: 'Proteção emergencial para a sua casa',
+  intro:
+    'Toda a experiência da Medicar em emergências, agora dentro de casa: atendimento de urgência e emergência por UTIs móveis, 24 horas por dia, para você e a sua família.',
+  benefits: [
+    {
+      title: 'UTI móvel 24h no seu endereço',
+      text: 'Atendimento emergencial em casa, a qualquer hora, com equipe preparada.',
+    },
+    {
+      title: 'Cobertura para a família',
+      text: 'Proteção pensada para todos os moradores da residência.',
+    },
+    {
+      title: 'Central 24h com regulação médica',
+      text: 'A mesma central que atende empresas, agora a serviço do seu lar.',
+    },
+    {
+      title: 'Tranquilidade em casa',
+      text: 'A segurança de saber que o socorro vai até você, onde você mora.',
+    },
+  ],
+  detail: {
+    title: 'Como funciona o Lar Protegido',
+    text: 'Ao acionar a Central 24h, o médico regulador avalia o caso e envia o recurso adequado até a sua casa — do acolhimento por telefone ao atendimento no local.',
+  },
+  pendingApproval: true,
+}
 
 export function getService(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug)

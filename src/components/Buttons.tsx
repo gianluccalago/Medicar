@@ -9,8 +9,9 @@ type Variant = 'primary' | 'ghost' | 'onRed' | 'ghostOnRed'
  * - ghost: neutro com hairline border
  * - onRed / ghostOnRed: variantes para as faixas vermelhas full-bleed
  */
+/* Botões compactos, sans 14px/500, radius 8px (adendo dos prints). */
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-btn px-4 py-2.5 text-[15px] font-medium tracking-[-0.011em] transition-colors'
+  'inline-flex items-center justify-center gap-2 rounded-btn px-4 py-2 text-[14px] font-medium tracking-[-0.006em] transition-colors'
 
 const variants: Record<Variant, string> = {
   primary: `${base} bg-medicar-red text-white hover:bg-medicar-red-deep`,

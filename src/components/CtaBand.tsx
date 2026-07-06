@@ -26,7 +26,7 @@ export function CtaBand({
         <AsteriskMark variant="white" size={260} className="absolute -bottom-20 -left-16 -rotate-6 opacity-[0.13]" />
       </div>
       <div className="relative mx-auto max-w-page px-4 py-20 text-center md:px-6">
-        <h2 className="mx-auto max-w-2xl text-heading-sm font-semi text-white md:text-heading">
+ <h2 className="mx-auto max-w-2xl text-heading-sm text-white md:text-heading">
           {title}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-body-lg text-white/85">{text}</p>

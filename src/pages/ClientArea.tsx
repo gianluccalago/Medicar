@@ -46,7 +46,7 @@ export default function ClientArea() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Área do cliente
             </p>
-            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
+ <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
               Seus serviços, a um clique
             </h1>
             <p className="mt-4 text-body-lg text-ink-soft">
@@ -62,7 +62,7 @@ export default function ClientArea() {
             <Reveal key={c.title} delay={(i % 2) * 0.06}>
               <div className="flex h-full flex-col rounded-card border border-line bg-canvas p-7">
                 <AsteriskMark size={22} />
-                <h2 className="mt-4 text-body-lg font-medium text-ink">{c.title}</h2>
+ <h2 className="mt-4 text-body-lg text-ink">{c.title}</h2>
                 <p className="mt-2 flex-1 text-body-sm text-ink-soft">{c.text}</p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <a

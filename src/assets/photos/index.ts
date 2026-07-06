@@ -39,4 +39,6 @@ export const servicePhotos: Record<string, string> = {
   'locacao-de-ambulancia': ambulance,
   'remocao-terrestre': mission,
   'transporte-aeromedico': aeromedico,
+  'nr-1': coletivo,
+  'lar-protegido': familia,
 }

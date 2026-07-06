@@ -34,7 +34,7 @@ export default function Clinic() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Clínica Medicar
             </p>
-            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
+ <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
               Cuidado completo, no centro de Ribeirão Preto
             </h1>
             <p className="mt-5 text-body-lg text-ink-soft">
@@ -71,7 +71,7 @@ export default function Clinic() {
                 <Reveal key={s.title} delay={(i % 2) * 0.06}>
                   <div className="h-full rounded-card border border-line bg-canvas p-6">
                     <AsteriskMark size={20} />
-                    <h2 className="mt-4 text-body font-medium text-ink">{s.title}</h2>
+ <h2 className="mt-4 text-body text-ink">{s.title}</h2>
                     <p className="mt-2 text-body-sm text-ink-soft">{s.text}</p>
                   </div>
                 </Reveal>
@@ -81,7 +81,7 @@ export default function Clinic() {
 
           <Reveal>
             <aside className="rounded-card border border-line bg-surface p-6">
-              <h2 className="text-body-lg font-medium text-ink">Visite a Clínica</h2>
+ <h2 className="text-body-lg text-ink">Visite a Clínica</h2>
               <dl className="mt-4 space-y-4 text-body-sm text-ink-soft">
                 <div>
                   <dt className="text-caption font-medium uppercase tracking-[0.08em] text-ink-muted">

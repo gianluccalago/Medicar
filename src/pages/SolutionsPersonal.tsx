@@ -22,7 +22,7 @@ export default function SolutionsPersonal() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Para você e sua família
             </p>
-            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
+ <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
               Cartão Medicar: saúde ao seu alcance onde você estiver
             </h1>
             <p className="mt-5 text-body-lg text-ink-soft">
@@ -55,7 +55,7 @@ export default function SolutionsPersonal() {
             <Reveal key={b.title} delay={(i % 3) * 0.06}>
               <div className="h-full rounded-card border border-line bg-canvas p-6">
                 <AsteriskMark size={20} />
-                <h2 className="mt-4 text-body font-medium text-ink">{b.title}</h2>
+ <h2 className="mt-4 text-body text-ink">{b.title}</h2>
                 <p className="mt-2 text-body-sm text-ink-soft">{b.text}</p>
                 {b.note && <p className="mt-2 text-caption text-ink-muted">{b.note}</p>}
               </div>

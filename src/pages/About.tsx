@@ -25,7 +25,7 @@ export default function About() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Sobre nós
             </p>
-            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
+ <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
               Mais de 30 anos salvando vidas pelo Brasil
             </h1>
             <p className="mt-5 text-body-lg text-ink-soft">
@@ -68,7 +68,7 @@ export default function About() {
             {movedByLife.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.08}>
                 <div className="border-t border-white/30 pt-5">
-                  <h3 className="text-subheading font-medium text-white">{item.title}</h3>
+ <h3 className="text-subheading text-white">{item.title}</h3>
                   <p className="mt-3 text-body-sm text-white/85">{item.text}</p>
                 </div>
               </Reveal>
@@ -144,7 +144,7 @@ export default function About() {
         </div>
 
         <div className="mt-16">
-          <h2 className="text-body-lg font-medium text-ink">Nossas bases</h2>
+ <h2 className="text-body-lg text-ink">Nossas bases</h2>
           <dl className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
             {bases.map((b) => (
               <div key={`${b.city}-${b.address}`} className="border-t border-line pt-4">

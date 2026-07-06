@@ -50,7 +50,7 @@ export default function Legal({ doc }: { doc: LegalDoc }) {
     <>
       <Seo title={`${content.title} | Medicar`} description={content.description} />
       <article className="mx-auto max-w-3xl px-4 py-16 md:px-6 md:py-20">
-        <h1 className="text-heading-sm font-semi text-ink">{content.title}</h1>
+ <h1 className="text-heading-sm text-ink">{content.title}</h1>
         <p className="mt-4 text-body-lg text-ink-soft">{content.description}</p>
 
         <div className="mt-8 rounded-card border border-line bg-red-wash/60 p-5">
@@ -66,7 +66,7 @@ export default function Legal({ doc }: { doc: LegalDoc }) {
         <ol className="mt-10 space-y-6">
           {content.sections.map((s, i) => (
             <li key={s} className="border-b border-line pb-6">
-              <h2 className="text-body-lg font-medium text-ink">
+ <h2 className="text-body-lg text-ink">
                 {i + 1}. {s}
               </h2>
               <p className="mt-2 text-body-sm text-ink-muted">

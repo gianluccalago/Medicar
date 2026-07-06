@@ -54,8 +54,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-canvas">
-      {/* Barra utilitária — emergência sempre visível */}
-      <div className="bg-ink text-white">
+      {/* Barra utilitária em vinho — emergência sempre visível, caixa normal */}
+      <div className="bg-medicar-wine text-white">
         <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-4 py-1.5 md:px-6">
           <a
             href={phones.emergency.tel}
@@ -63,13 +63,13 @@ export function Header() {
           >
             <span
               aria-hidden="true"
-              className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-medicar-red"
+              className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-white"
             />
-            {phones.emergency.label}: {phones.emergency.display}
+            Emergência 24h: {phones.emergency.display}
           </a>
-          <div className="hidden items-center gap-5 text-caption text-white/75 sm:flex">
+          <div className="hidden items-center gap-5 text-caption text-white/80 sm:flex">
             <a href={phones.commercial.tel} className="hover:text-white hover:underline">
-              {phones.commercial.label}: {phones.commercial.display}
+              Comercial/SAC: {phones.commercial.display}
             </a>
             <a
               href={whatsapp.general.url}
@@ -98,7 +98,7 @@ export function Header() {
               Home
             </NavLink>
             <NavLink to="/sobre-nos" className={navLinkClass}>
-              Sobre nós
+              Quem somos
             </NavLink>
 
             <div className="relative" ref={dropdownRef}>
@@ -156,6 +156,12 @@ export function Header() {
                         Cartão Medicar: telemedicina 24h, UTIs móveis, descontos em consultas,
                         exames e medicamentos para você e sua família.
                       </p>
+                      <Link
+                        to="/solucoes/lar-protegido"
+                        className="block rounded-btn px-2 py-1.5 text-body-sm text-ink-soft hover:bg-surface hover:text-ink"
+                      >
+                        Lar Protegido →
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -214,7 +220,7 @@ export function Header() {
               Home
             </Link>
             <Link to="/sobre-nos" className="border-b border-line py-3.5 text-body text-ink">
-              Sobre nós
+              Quem somos
             </Link>
             <button
               type="button"
@@ -255,6 +261,12 @@ export function Header() {
                   className="block py-2 text-body-sm font-medium text-medicar-red-deep"
                 >
                   Para você (Cartão Medicar) →
+                </Link>
+                <Link
+                  to="/solucoes/lar-protegido"
+                  className="block py-2 pl-3 text-body-sm text-ink-soft"
+                >
+                  Lar Protegido
                 </Link>
               </div>
             )}

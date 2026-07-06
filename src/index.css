@@ -26,13 +26,27 @@
   --color-medicar-red-deep: #9e1216; /* hover/pressed e texto pequeno sobre branco (AA) */
   --color-red-wash: #fdecee; /* fundos de destaque suaves, badges */
   --color-brand-gray: #5f5d5c; /* pás ortogonais e hub do asterisco */
+  /*
+   * Vinho Medicar — tom mais profundo que o vermelho primário, para a barra
+   * utilitária superior e o footer (adendo dos prints). Derivado do vermelho
+   * da marca escurecido para leitura de "vinho/bordô".
+   */
+  --color-medicar-wine: #6b1015;
+  --color-medicar-wine-soft: #7c1820; /* hover/superfícies sobre o vinho */
 
   /*
-   * Tipografia — Plus Jakarta Sans (premium, geométrica) em headings e corpo;
-   * Fredoka (arredondada) apenas no wordmark do logo, ecoando a marca.
+   * Tipografia — par serif display + sans (adendo dos prints).
+   * --font-display: Lora (serifada editorial). Os prints da agência usam, na
+   *   verdade, uma sans arredondada pesada nos títulos; o adendo determina
+   *   explicitamente uma serifada (regular, sem bold), então adotamos Lora como
+   *   a mais próxima do brief editorial.
+   *   TODO: substituir pela fonte original quando o arquivo for fornecido.
+   * --font-sans: DM Sans (grotesca neutra) para corpo, nav, botões e formulários.
+   * --font-rounded: Fredoka, apenas no wordmark do logo.
    */
-  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui,
-    -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Lora Variable', 'Georgia', 'Times New Roman', serif;
+  --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif;
   --font-rounded: 'Fredoka Variable', var(--font-sans);
 
   --text-caption: 13px;
@@ -66,10 +80,10 @@
   --font-weight-semi: 600;
   --font-weight-bold: 700;
 
-  /* Radii — vocabulário completo: 2/4/6/12/9999 */
+  /* Radii — padrão único dos prints: caixas 16px, botões 8px, pills 9999 */
   --radius-badge: 4px;
-  --radius-btn: 6px;
-  --radius-card: 12px;
+  --radius-btn: 8px;
+  --radius-card: 16px;
 
   /* Layout */
   --spacing-page: 1200px;
@@ -78,6 +92,8 @@
   --shadow-hairline: 0 0 0 1px #e6e7e9;
 
   --animate-marquee: marquee 42s linear infinite;
+  --animate-marquee-slow: marquee 32s linear infinite;
+  --animate-float: float 4.5s ease-in-out infinite;
 
   @keyframes marquee {
     from {
@@ -85,6 +101,16 @@
     }
     to {
       transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
     }
   }
 }
@@ -105,6 +131,33 @@ body {
   color: var(--color-ink-soft);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/*
+ * Títulos sempre na serifada display, peso regular (adendo dos prints):
+ * ênfase por tamanho e cor, nunca por peso. Tracking levemente negativo,
+ * nunca expandido. Em @layer base para que utilitários (text-white, etc.)
+ * possam sobrepor cor/peso onde necessário (heros sobre foto, footer vinho).
+ */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-regular);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
 }
 
 .font-rounded {

@@ -8,17 +8,20 @@ interface RevealProps {
   className?: string
 }
 
-/** Fade + slide sutil on-scroll, desativado com prefers-reduced-motion. */
+/**
+ * Entrada fade + slide curta (≈350ms), uma única vez, sem bounce
+ * (adendo dos prints). Desativada com prefers-reduced-motion.
+ */
 export function Reveal({ children, delay = 0, className }: RevealProps) {
   const reduced = useReducedMotion()
   if (reduced) return <div className={className}>{children}</div>
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-64px' }}
-      transition={{ duration: 0.55, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+      viewport={{ once: true, margin: '-48px' }}
+      transition={{ duration: 0.36, delay, ease: [0.22, 0.61, 0.36, 1] }}
     >
       {children}
     </motion.div>

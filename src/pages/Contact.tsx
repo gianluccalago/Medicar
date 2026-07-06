@@ -105,7 +105,7 @@ export default function Contact() {
             <p className="text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep">
               Contato
             </p>
-            <h1 className="mt-3 text-heading-sm font-semi text-ink md:text-heading">
+ <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
               Vamos conversar?
             </h1>
             <p className="mt-4 text-body-lg text-ink-soft">
@@ -123,7 +123,7 @@ export default function Contact() {
               role="status"
               className="rounded-card border border-line bg-surface p-8 text-center"
             >
-              <h2 className="text-subheading font-medium text-ink">Mensagem enviada!</h2>
+ <h2 className="text-subheading text-ink">Mensagem enviada!</h2>
               <p className="mx-auto mt-3 max-w-md text-body-sm text-ink-soft">
                 Obrigado pelo contato. Nossa equipe vai retornar em breve pelo telefone ou e-mail
                 informado.
@@ -317,7 +317,7 @@ export default function Contact() {
 
           <aside className="space-y-6">
             <div className="rounded-card border border-line bg-surface p-6">
-              <h2 className="text-body-lg font-medium text-ink">Fale agora</h2>
+ <h2 className="text-body-lg text-ink">Fale agora</h2>
               <ul className="mt-4 space-y-3 text-body-sm text-ink-soft">
                 <li>
                   <a href={phones.emergency.tel} className="font-medium text-medicar-red-deep hover:underline">
@@ -358,7 +358,7 @@ export default function Contact() {
             </div>
 
             <div className="rounded-card border border-line p-6">
-              <h2 className="text-body-lg font-medium text-ink">Nossas bases</h2>
+ <h2 className="text-body-lg text-ink">Nossas bases</h2>
               <dl className="mt-4 space-y-4">
                 {bases.map((b) => (
                   <div key={`${b.city}-${b.address}`}>
