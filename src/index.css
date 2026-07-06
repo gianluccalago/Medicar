@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+
+@theme {
+  /*
+   * Medicar — design system claro.
+   * Disciplina de layout/tipografia herdada da referência (Linear-style):
+   * hairline borders, radii 6/12px, section gap 96px, pesos 400/510/590.
+   * Tema escuro e acid-lime da referência substituídos pela paleta Medicar.
+   */
+
+  /* Cores — superfícies e texto */
+  --color-canvas: #ffffff;
+  --color-surface: #f6f6f7;
+  --color-ink: #1b1c1e;
+  --color-ink-soft: #4b4e54;
+  --color-ink-muted: #8a8f98;
+  --color-line: #e6e7e9;
+  --color-line-strong: #d5d7da;
+
+  /*
+   * Vermelho Medicar — TOKEN ÚNICO da marca.
+   * Extraído do asterisco do logo no vídeo do hero (amostra #D53527 sob luz
+   * quente/dourada; normalizado para neutralizar o desvio quente da cena).
+   * TODO: validar contra o manual de marca/asset vetorial oficial quando
+   * disponível — trocar apenas aqui.
+   */
+  --color-medicar-red: #dc2b26;
+  --color-medicar-red-deep: #b01522; /* hover/pressed e texto pequeno sobre branco (AA) */
+  --color-red-wash: #fdecee; /* fundos de destaque suaves, badges */
+  --color-brand-gray: #6b6f76; /* pá cinza do asterisco / wordmark secundário */
+
+  /* Tipografia */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif;
+
+  --text-caption: 13px;
+  --text-caption--line-height: 1.4;
+  --text-body-sm: 15px;
+  --text-body-sm--line-height: 1.6;
+  --text-body-sm--letter-spacing: -0.165px;
+  --text-body: 16px;
+  --text-body--line-height: 1.5;
+  --text-body-lg: 20px;
+  --text-body-lg--line-height: 1.4;
+  --text-body-lg--letter-spacing: -0.24px;
+  --text-subheading: 24px;
+  --text-subheading--line-height: 1.33;
+  --text-subheading--letter-spacing: -0.288px;
+  --text-heading-sm: 32px;
+  --text-heading-sm--line-height: 1.13;
+  --text-heading-sm--letter-spacing: -0.704px;
+  --text-heading: 48px;
+  --text-heading--line-height: 1.05;
+  --text-heading--letter-spacing: -1.056px;
+  --text-heading-lg: 64px;
+  --text-heading-lg--line-height: 1;
+  --text-heading-lg--letter-spacing: -1.408px;
+  --text-display: 72px;
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -1.584px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 510;
+  --font-weight-semi: 590;
+
+  /* Radii — vocabulário completo: 2/4/6/12/9999 */
+  --radius-badge: 4px;
+  --radius-btn: 6px;
+  --radius-card: 12px;
+
+  /* Layout */
+  --spacing-page: 1200px;
+  --spacing-section: 96px;
+
+  --shadow-hairline: 0 0 0 1px #e6e7e9;
+
+  --animate-marquee: marquee 42s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv01', 'ss03', 'zero';
+  background: var(--color-canvas);
+  color: var(--color-ink-soft);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Foco visível consistente em todo o site */
+:focus-visible {
+  outline: 2px solid var(--color-medicar-red-deep);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-red-wash);
+  color: var(--color-medicar-red-deep);
+}
