@@ -1,48 +1,71 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Logo } from './Logo'
-import { phones, whatsapp } from '../data/site'
+import { phones } from '../data/site'
 import { services } from '../data/services'
 
-const navLinkBase =
-  'rounded-btn px-3 py-2 text-body-sm transition-colors hover:text-ink'
-
-function navLinkClass({ isActive }: { isActive: boolean }) {
-  return `${navLinkBase} ${isActive ? 'font-medium text-medicar-red-deep' : 'text-ink-soft'}`
+/*
+ * Estrutura de navegação — dropdowns fluidos (hover) com as opções da Medicar.
+ * "Para Empresas" consome o array de serviços; os demais são listas curtas.
+ */
+interface MenuItem {
+  label: string
+  to: string
+}
+interface Menu {
+  label: string
+  items: readonly MenuItem[]
 }
 
-/** Barra utilitária + navegação sticky com dropdown "Soluções" e drawer mobile. */
+const menus: readonly Menu[] = [
+  {
+    label: 'A Medicar',
+    items: [
+      { label: 'Quem somos', to: '/quem-somos' },
+      { label: 'Clínica Medicar', to: '/clinica-medicar' },
+      { label: 'Área do cliente', to: '/area-do-cliente' },
+    ],
+  },
+  {
+    label: 'Para você',
+    items: [
+      { label: 'Cartão Medicar', to: '/solucoes/para-voce' },
+      { label: 'Lar Protegido', to: '/solucoes/lar-protegido' },
+      { label: 'Medicar Pet', to: '/medicar-pet' },
+    ],
+  },
+  {
+    label: 'Para Empresas',
+    items: [
+      { label: 'Todas as soluções', to: '/solucoes/empresa' },
+      ...services.map((s) => ({ label: s.cardTitle, to: `/solucoes/empresa/${s.slug}` })),
+    ],
+  },
+]
+
+/* TODO: URL oficial do ATS (Senior) de vagas da Medicar */
+const careersUrl = 'https://medicar.senior.com.br'
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [solutionsOpen, setSolutionsOpen] = useState(false)
-  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [openMenu, setOpenMenu] = useState<string | null>(null)
+  const [mobileSub, setMobileSub] = useState<string | null>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const { pathname } = useLocation()
 
-  // Fecha menus ao navegar
   useEffect(() => {
     setMenuOpen(false)
-    setSolutionsOpen(false)
+    setOpenMenu(null)
   }, [pathname])
 
-  // Fecha o dropdown ao clicar fora ou apertar Esc
   useEffect(() => {
-    if (!solutionsOpen) return
-    const onClick = (e: MouseEvent) => {
-      if (!dropdownRef.current?.contains(e.target as Node)) setSolutionsOpen(false)
-    }
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSolutionsOpen(false)
+      if (e.key === 'Escape') setOpenMenu(null)
     }
-    document.addEventListener('mousedown', onClick)
     document.addEventListener('keydown', onKey)
-    return () => {
-      document.removeEventListener('mousedown', onClick)
-      document.removeEventListener('keydown', onKey)
-    }
-  }, [solutionsOpen])
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
 
-  // Trava o scroll com o drawer aberto
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => {
@@ -50,144 +73,169 @@ export function Header() {
     }
   }, [menuOpen])
 
-  const solutionsActive = pathname.startsWith('/solucoes')
+  // Hover fluido: abre imediato, fecha com pequena tolerância
+  const open = (label: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setOpenMenu(label)
+  }
+  const scheduleClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 120)
+  }
 
   return (
     <header className="sticky top-0 z-40 bg-canvas">
-      {/* Barra utilitária em vermelho vivo — emergência sempre visível, caixa normal */}
+      {/* Barra utilitária — Emergência em destaque */}
       <div className="bg-medicar-red text-white">
-        <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-4 py-1.5 md:px-6">
-          <a
-            href={phones.emergency.tel}
-            className="inline-flex items-center gap-2 text-caption font-medium text-white hover:underline"
-          >
-            <span
-              aria-hidden="true"
-              className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-white"
-            />
-            Emergência 24h: {phones.emergency.display}
-          </a>
-          <div className="hidden items-center gap-5 text-caption text-white/80 sm:flex">
-            <a href={phones.commercial.tel} className="hover:text-white hover:underline">
-              Comercial/SAC: {phones.commercial.display}
+        <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-4 py-2 md:px-6">
+          <span className="hidden text-body-sm font-medium sm:block">Seja bem-vindo à Medicar</span>
+          <div className="flex flex-1 items-center justify-end gap-4 sm:gap-7">
+            <a
+              href={phones.emergency.tel}
+              className="group inline-flex items-center gap-2.5 rounded-full bg-white/0 px-1 transition-colors hover:bg-white/10"
+            >
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-medicar-red">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M12 8v8M8 12h8"
+                    stroke="currentColor"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+                </svg>
+              </span>
+              <span className="leading-tight">
+                <span className="block text-[11px] font-bold uppercase tracking-wide text-white/85">
+                  Emergência 24h
+                </span>
+                <span className="block text-body font-bold tracking-tight">
+                  {phones.emergency.display}
+                </span>
+              </span>
             </a>
             <a
-              href={whatsapp.general.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white hover:underline"
+              href={phones.commercial.tel}
+              className="hidden items-center gap-2 md:inline-flex"
             >
-              WhatsApp: {whatsapp.general.display}
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/50">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11 11 0 003.4.55 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.55 3.4 1 1 0 01-.24 1l-2.2 2.4z" />
+                </svg>
+              </span>
+              <span className="leading-tight">
+                <span className="block text-[11px] font-medium uppercase tracking-wide text-white/75">
+                  Comercial/SAC
+                </span>
+                <span className="block text-body-sm font-semi">{phones.commercial.display}</span>
+              </span>
             </a>
           </div>
         </div>
       </div>
 
       {/* Navegação principal */}
-      <div className="border-b border-line bg-canvas/95 backdrop-blur">
+      <div className="border-b border-line bg-canvas">
         <nav
           aria-label="Navegação principal"
-          className="mx-auto flex max-w-page items-center justify-between gap-4 px-4 py-3 md:px-6"
+          className="mx-auto flex h-[68px] max-w-page items-stretch justify-between gap-4 px-4 md:px-6"
         >
-          <Link to="/" aria-label="Medicar — página inicial">
+          <Link to="/" aria-label="Medicar — página inicial" className="flex items-center">
             <Logo />
           </Link>
 
-          <div className="hidden items-center gap-1 lg:flex">
-            <NavLink to="/" end className={navLinkClass}>
-              Home
-            </NavLink>
-            <NavLink to="/quem-somos" className={navLinkClass}>
-              Quem somos
-            </NavLink>
-
-            <div className="relative" ref={dropdownRef}>
-              <button
-                type="button"
-                aria-expanded={solutionsOpen}
-                aria-haspopup="true"
-                onClick={() => setSolutionsOpen((v) => !v)}
-                className={`${navLinkBase} inline-flex items-center gap-1 ${
-                  solutionsActive ? 'font-medium text-medicar-red-deep' : 'text-ink-soft'
-                }`}
-              >
-                Soluções
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 10 10"
-                  aria-hidden="true"
-                  className={`transition-transform ${solutionsOpen ? 'rotate-180' : ''}`}
+          {/* Menus desktop */}
+          <div className="hidden items-stretch lg:flex">
+            {menus.map((menu) => {
+              const isOpen = openMenu === menu.label
+              return (
+                <div
+                  key={menu.label}
+                  className="relative flex items-stretch"
+                  onMouseEnter={() => open(menu.label)}
+                  onMouseLeave={scheduleClose}
                 >
-                  <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-              </button>
-              {solutionsOpen && (
-                <div className="absolute left-0 top-full mt-2 w-[520px] rounded-card border border-line bg-canvas p-4 shadow-[0_12px_32px_rgba(27,28,30,0.08)]">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Link
-                        to="/solucoes/empresa"
-                        className="block rounded-btn px-2 py-1.5 text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep hover:bg-surface"
-                      >
-                        Para empresa →
-                      </Link>
-                      <ul className="mt-1">
-                        {services.map((s) => (
-                          <li key={s.slug}>
-                            <Link
-                              to={`/solucoes/empresa/${s.slug}`}
-                              className="block rounded-btn px-2 py-1.5 text-body-sm text-ink-soft hover:bg-surface hover:text-ink"
-                            >
-                              {s.cardTitle}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-haspopup="true"
+                    onClick={() => setOpenMenu(isOpen ? null : menu.label)}
+                    className={`inline-flex items-center gap-1.5 px-5 text-body-sm font-medium transition-colors ${
+                      isOpen ? 'bg-medicar-red text-white' : 'text-ink hover:text-medicar-red-deep'
+                    }`}
+                  >
+                    {menu.label}
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                      aria-hidden="true"
+                      className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                    >
+                      <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                    </svg>
+                  </button>
+                  {isOpen && (
+                    <div className="absolute left-0 top-full min-w-[240px] rounded-b-card border border-t-0 border-line bg-canvas py-2 shadow-[0_16px_40px_rgba(27,28,30,0.12)]">
+                      {menu.items.map((item) => (
+                        <Link
+                          key={item.to + item.label}
+                          to={item.to}
+                          className="block px-5 py-2 text-body-sm text-ink-soft transition-colors hover:bg-surface hover:text-medicar-red-deep"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
                     </div>
-                    <div>
-                      <Link
-                        to="/solucoes/para-voce"
-                        className="block rounded-btn px-2 py-1.5 text-caption font-medium uppercase tracking-[0.08em] text-medicar-red-deep hover:bg-surface"
-                      >
-                        Para você →
-                      </Link>
-                      <p className="mt-1 px-2 py-1.5 text-body-sm text-ink-soft">
-                        Cartão Medicar: telemedicina 24h, UTIs móveis, descontos em consultas,
-                        exames e medicamentos para você e sua família.
-                      </p>
-                      <Link
-                        to="/solucoes/lar-protegido"
-                        className="block rounded-btn px-2 py-1.5 text-body-sm text-ink-soft hover:bg-surface hover:text-ink"
-                      >
-                        Lar Protegido →
-                      </Link>
-                    </div>
-                  </div>
+                  )}
                 </div>
-              )}
-            </div>
-
-            <NavLink to="/clinica-medicar" className={navLinkClass}>
-              Clínica Medicar
-            </NavLink>
-            <NavLink to="/medicar-pet" className={navLinkClass}>
-              Medicar Pet
-            </NavLink>
-            <NavLink to="/blog" className={navLinkClass}>
+              )
+            })}
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                `inline-flex items-center px-5 text-body-sm font-medium transition-colors ${
+                  isActive ? 'text-medicar-red-deep' : 'text-ink hover:text-medicar-red-deep'
+                }`
+              }
+            >
               Blog
             </NavLink>
-            <NavLink to="/contato" className={navLinkClass}>
+            <NavLink
+              to="/contato"
+              className={({ isActive }) =>
+                `inline-flex items-center px-5 text-body-sm font-medium transition-colors ${
+                  isActive ? 'text-medicar-red-deep' : 'text-ink hover:text-medicar-red-deep'
+                }`
+              }
+            >
               Contato
             </NavLink>
           </div>
 
+          {/* Ações à direita */}
           <div className="flex items-center gap-2">
+            <a
+              href={careersUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden items-center gap-2 rounded-btn border border-medicar-red px-4 py-2 text-body-sm font-medium text-medicar-red transition-colors hover:bg-red-wash xl:inline-flex"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                <rect x="3" y="7" width="18" height="13" rx="2" />
+                <path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" />
+              </svg>
+              Trabalhe Conosco
+            </a>
             <Link
               to="/area-do-cliente"
-              className="hidden rounded-full border border-line-strong px-4 py-2 text-caption font-medium text-ink transition-colors hover:border-ink-muted hover:bg-surface sm:inline-flex"
+              className="hidden items-center gap-2 rounded-btn bg-medicar-red px-4 py-2 text-body-sm font-medium text-white transition-colors hover:bg-medicar-red-deep sm:inline-flex"
             >
-              Área do cliente
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.5" />
+                <path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" />
+              </svg>
+              Área do Cliente
             </Link>
             <button
               type="button"
@@ -213,84 +261,69 @@ export function Header() {
       {menuOpen && (
         <div
           id="mobile-menu"
-          className="absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-6rem)] overflow-y-auto border-t border-line bg-canvas shadow-[0_24px_48px_rgba(27,28,30,0.18)] lg:hidden"
+          className="absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-7rem)] overflow-y-auto border-t border-line bg-canvas shadow-[0_24px_48px_rgba(27,28,30,0.18)] lg:hidden"
         >
           <nav aria-label="Menu móvel" className="flex flex-col px-4 py-4">
-            <Link to="/" className="border-b border-line py-3.5 text-body text-ink">
-              Home
-            </Link>
-            <Link to="/quem-somos" className="border-b border-line py-3.5 text-body text-ink">
-              Quem somos
-            </Link>
-            <button
-              type="button"
-              className="flex items-center justify-between border-b border-line py-3.5 text-left text-body text-ink"
-              aria-expanded={mobileSolutionsOpen}
-              onClick={() => setMobileSolutionsOpen((v) => !v)}
-            >
-              Soluções
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 10 10"
-                aria-hidden="true"
-                className={`transition-transform ${mobileSolutionsOpen ? 'rotate-180' : ''}`}
-              >
-                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-              </svg>
-            </button>
-            {mobileSolutionsOpen && (
-              <div className="border-b border-line bg-surface px-3 py-2">
-                <Link
-                  to="/solucoes/empresa"
-                  className="block py-2 text-body-sm font-medium text-medicar-red-deep"
-                >
-                  Para empresa →
-                </Link>
-                {services.map((s) => (
-                  <Link
-                    key={s.slug}
-                    to={`/solucoes/empresa/${s.slug}`}
-                    className="block py-2 pl-3 text-body-sm text-ink-soft"
+            {menus.map((menu) => {
+              const isOpen = mobileSub === menu.label
+              return (
+                <div key={menu.label} className="border-b border-line">
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between py-3.5 text-left text-body text-ink"
+                    aria-expanded={isOpen}
+                    onClick={() => setMobileSub(isOpen ? null : menu.label)}
                   >
-                    {s.cardTitle}
-                  </Link>
-                ))}
-                <Link
-                  to="/solucoes/para-voce"
-                  className="block py-2 text-body-sm font-medium text-medicar-red-deep"
-                >
-                  Para você (Cartão Medicar) →
-                </Link>
-                <Link
-                  to="/solucoes/lar-protegido"
-                  className="block py-2 pl-3 text-body-sm text-ink-soft"
-                >
-                  Lar Protegido
-                </Link>
-              </div>
-            )}
-            <Link to="/clinica-medicar" className="border-b border-line py-3.5 text-body text-ink">
-              Clínica Medicar
-            </Link>
-            <Link to="/medicar-pet" className="border-b border-line py-3.5 text-body text-ink">
-              Medicar Pet
-            </Link>
+                    {menu.label}
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 10 10"
+                      aria-hidden="true"
+                      className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                    >
+                      <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                    </svg>
+                  </button>
+                  {isOpen && (
+                    <div className="bg-surface px-3 py-1">
+                      {menu.items.map((item) => (
+                        <Link
+                          key={item.to + item.label}
+                          to={item.to}
+                          className="block py-2 text-body-sm text-ink-soft"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
             <Link to="/blog" className="border-b border-line py-3.5 text-body text-ink">
               Blog
             </Link>
             <Link to="/contato" className="border-b border-line py-3.5 text-body text-ink">
               Contato
             </Link>
+            <a
+              href={careersUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex justify-center rounded-btn border border-medicar-red px-4 py-2.5 text-body-sm font-medium text-medicar-red"
+            >
+              Trabalhe Conosco
+            </a>
             <Link
               to="/area-do-cliente"
-              className="mt-4 inline-flex justify-center rounded-full border border-line-strong px-4 py-2.5 text-body-sm font-medium text-ink"
+              className="mt-2 inline-flex justify-center rounded-btn bg-medicar-red px-4 py-2.5 text-body-sm font-medium text-white"
             >
-              Área do cliente
+              Área do Cliente
             </Link>
             <a
               href={phones.emergency.tel}
-              className="mt-3 inline-flex justify-center rounded-btn bg-medicar-red px-4 py-2.5 text-body-sm font-medium text-white"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-btn border border-medicar-red px-4 py-2.5 text-body-sm font-bold text-medicar-red"
             >
               Emergência 24h: {phones.emergency.display}
             </a>
