@@ -67,18 +67,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Faixa de números — 5 grandes números com contexto */}
-      <section aria-label="Grandes números da Medicar" className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-page px-4 py-20 md:px-6">
-          <SectionHeading
-            eyebrow="Grandes números"
-            title="Grandes números são a nossa especialidade"
-          />
-          <div className="mt-10">
-            <StatsBand />
-          </div>
-        </div>
-      </section>
+      {/* 2. Faixa de números — vermelha, clone do site anterior */}
+      <StatsBand />
 
       {/* 3. Duas jornadas */}
       <section className="mx-auto max-w-page px-4 py-section md:px-6">

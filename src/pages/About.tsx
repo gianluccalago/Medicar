@@ -85,15 +85,8 @@ export default function About() {
         </Reveal>
       </section>
 
-      {/* Grandes números */}
-      <section aria-label="Grandes números" className="border-y border-line bg-surface">
-        <div className="mx-auto max-w-page px-4 py-section md:px-6">
-          <SectionHeading eyebrow="Grandes números" title="Grandes números são a nossa especialidade" />
-          <div className="mt-10">
-            <StatsBand />
-          </div>
-        </div>
-      </section>
+      {/* Grandes números — faixa vermelha */}
+      <StatsBand />
 
       {/* Nosso Propósito — faixa vermelha */}
       <section className="relative overflow-hidden bg-medicar-red">
