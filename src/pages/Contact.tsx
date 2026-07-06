@@ -106,11 +106,11 @@ export default function Contact() {
               Contato
             </p>
  <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
-              Vamos conversar?
+              Fale conosco
             </h1>
             <p className="mt-4 text-body-lg text-ink-soft">
-              Preencha o formulário e nossa equipe retorna em breve — ou fale agora pelos
-              telefones e WhatsApp.
+              Nossa equipe está pronta para atender você. Entre em contato para tirar dúvidas,
+              solicitar informações ou conhecer melhor nossos serviços.
             </p>
           </div>
         </div>
@@ -131,6 +131,11 @@ export default function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate={false} aria-label="Formulário de contato">
+              <h2 className="text-subheading text-ink">Entre em contato</h2>
+              <p className="mb-6 mt-2 text-body-sm text-ink-soft">
+                Entre em contato com a Medicar para solicitar propostas, informações técnicas ou
+                suporte. Retornaremos o mais breve possível.
+              </p>
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="sm:col-span-2">
                   <label htmlFor="assunto" className={labelClass}>

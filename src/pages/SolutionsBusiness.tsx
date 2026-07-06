@@ -51,8 +51,9 @@ export default function SolutionsBusiness() {
 
       <section className="mx-auto max-w-page px-4 py-section md:px-6">
         <SectionHeading
-          eyebrow="Soluções"
-          title="Oito formas de cuidar da sua empresa"
+          eyebrow="Nossas soluções"
+          title="Cuidado para cada necessidade"
+          lead="Seja para proteger sua empresa, seus colaboradores ou cuidar da sua família, temos a solução ideal."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2">
           {services.map((s, i) => (

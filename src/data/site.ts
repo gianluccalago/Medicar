@@ -61,6 +61,25 @@ export const brandMessages = {
   bestOption: 'A melhor opção em saúde para você ou sua empresa',
 } as const
 
+/** Missão e Visão oficiais (copy do site anterior). */
+export const missionVision = {
+  mission:
+    'Oferecer soluções em saúde com foco em diminuir a dor e salvar vidas por meio de condutas médicas humanizadas, ágeis, eficientes e seguras para os pacientes e equipes.',
+  vision:
+    'Ser reconhecida nacionalmente como padrão de excelência, oferecendo um conjunto de soluções em saúde, seja ele móvel, local e a distância, utilizando sempre as melhores ferramentas para cuidar das pessoas e salvar vidas.',
+} as const
+
+/** "Nosso Propósito" — texto oficial (Quem somos). Parágrafos na ordem. */
+export const purposeParagraphs: readonly string[] = [
+  'Salvamos vidas. Essa é a nossa essência, o motivo que move cada plantão, cada chamado, cada atendimento.',
+  'Há mais de 30 anos, estamos ao lado de quem precisa de segurança e cuidado, levando suporte médico onde e quando for necessário.',
+  'Mas o que fazemos vai muito além das ambulâncias. Nós cuidamos de histórias, famílias e empresas — protegendo o que há de mais valioso: a vida.',
+  'Acreditamos que excelência não é um ato isolado, é um compromisso diário. Por isso, investimos em tecnologia, capacitação e estrutura, para garantir o mais alto padrão em atendimento para pessoas e empresas.',
+  'Trabalhamos com empatia, responsabilidade e propósito.',
+  'Cada colaborador é parte essencial dessa missão. Porque cuidar de vidas é um trabalho coletivo — feito com técnica, coragem e coração.',
+  'Somos a Medicar. E nossa missão é salvar vidas!',
+]
+
 export const movedByLife = [
   {
     title: 'Somos',

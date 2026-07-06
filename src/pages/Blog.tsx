@@ -21,6 +21,10 @@ export default function Blog() {
  <h1 className="mt-3 text-heading-sm text-ink md:text-heading">
               Saúde, segurança e gestão em dia
             </h1>
+            <p className="mt-4 text-body-lg text-ink-soft">
+              Um espaço dedicado à informação de qualidade, com conteúdos relevantes sobre saúde,
+              gestão de atendimento e segurança médica.
+            </p>
           </div>
         </div>
       </section>

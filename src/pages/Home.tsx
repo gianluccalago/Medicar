@@ -11,7 +11,7 @@ import { LogoStrip } from '../components/LogoStrip'
 import { TestimonialCard } from '../components/TestimonialCard'
 import { CtaBand } from '../components/CtaBand'
 import { brandMessages, movedByLife, phones } from '../data/site'
-import { services, dispatchFlow } from '../data/services'
+import { dispatchFlow } from '../data/services'
 import { coverageAreas, coverageNote } from '../data/bases'
 import { testimonials } from '../data/testimonials'
 import { posts } from '../data/posts'
@@ -23,6 +23,62 @@ const homeTestimonials = testimonials.filter((t) =>
 
 /* Exatamente os 4 posts mais recentes na Home (adendo item 8). */
 const recentPosts = posts.slice(0, 4)
+
+/*
+ * "Nossas Soluções" — conjunto curado com a copy literal do site oficial
+ * (mistura B2B + B2C, inclui Lar Protegido, Medicar Pet e Gestão de Risco
+ * Psicossocial 360º). Cada card revela a foto no hover.
+ */
+const homeSolutions = [
+  {
+    title: 'Área Protegida',
+    desc: 'Segurança para seus funcionários, clientes e visitantes.',
+    to: '/solucoes/empresa/area-protegida',
+    photo: servicePhotos['area-protegida'],
+  },
+  {
+    title: 'Lar Protegido Medicar',
+    desc: 'Socorro e cuidado na sua casa para você, sua família e seus pets.',
+    to: '/solucoes/lar-protegido',
+    photo: photos.familia,
+  },
+  {
+    title: 'Medicar Pet',
+    desc: 'Veterinário disponível 24 horas por videochamada com uso ilimitado para cães e gatos.',
+    to: '/medicar-pet',
+    photo: photos.pet,
+  },
+  {
+    title: 'Telemedicina Medicar',
+    desc: 'Atendimento médico rápido, sem sair de casa ou do trabalho e sem filas em consultórios.',
+    to: '/solucoes/empresa/telemedicina',
+    photo: servicePhotos['telemedicina'],
+  },
+  {
+    title: 'Coletivo Empresarial',
+    desc: 'Proteção para seus colaboradores dentro e fora da empresa.',
+    to: '/solucoes/empresa/coletivo-empresarial',
+    photo: servicePhotos['coletivo-empresarial'],
+  },
+  {
+    title: 'Locação de Ambulâncias',
+    desc: 'Sua frota sem investimento inicial e sem dores de cabeça com administração.',
+    to: '/solucoes/empresa/locacao-de-ambulancia',
+    photo: servicePhotos['locacao-de-ambulancia'],
+  },
+  {
+    title: 'Gestão de Risco Psicossocial 360º',
+    desc: 'Programa de ações diagnósticas, preventivas e educativas para promover o bem-estar emocional e atender às normas da NR-1.',
+    to: '/solucoes/empresa/nr-1',
+    photo: servicePhotos['nr-1'],
+  },
+  {
+    title: 'Terceirização de Ambulatório',
+    desc: 'Deixe sua equipe focada no que realmente importa: seu negócio.',
+    to: '/solucoes/empresa/terceirizacao-de-ambulatorio',
+    photo: servicePhotos['terceirizacao-de-ambulatorio'],
+  },
+]
 
 export default function Home() {
   return (
@@ -39,15 +95,16 @@ export default function Home() {
         <div className="relative mx-auto w-full max-w-page px-4 py-24 md:px-6">
           <div className="max-w-xl">
  <h1 className="text-heading text-white md:text-heading-lg">
-              {brandMessages.hero}
+              Soluções em saúde para você ou sua empresa
             </h1>
             <p className="mt-5 text-body-lg text-white/90">{brandMessages.heroSub}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink to="/solucoes/empresa" variant="primary">
-                Para sua empresa
+                Conheça nossos serviços
               </ButtonLink>
-              <ButtonLink to="/solucoes/para-voce" variant="ghostOnRed">
-                Para você e sua família
+              {/* Rótulo do 2º CTA sugerido (no print o botão vermelho estava sem texto) — confirmar */}
+              <ButtonLink to="/contato" variant="ghostOnRed">
+                Fale conosco
               </ButtonLink>
             </div>
             <a
@@ -69,7 +126,7 @@ export default function Home() {
         <div className="mx-auto max-w-page px-4 py-20 md:px-6">
           <SectionHeading
             eyebrow="Grandes números"
-            title="A escala de quem cuida do Brasil há mais de 30 anos"
+            title="Grandes números são a nossa especialidade"
           />
           <div className="mt-10">
             <StatsBand />
@@ -153,8 +210,8 @@ export default function Home() {
         <div className="mx-auto max-w-page px-4 py-section md:px-6">
           <SectionHeading
             eyebrow="Nossas soluções"
-            title="Soluções que se combinam, um só parceiro"
-            lead="Tudo o que a sua operação precisa em saúde, com a retaguarda de quem é referência em emergências há mais de 30 anos."
+            title="Nossas Soluções"
+            lead="A Medicar oferece soluções personalizadas para atender qualquer tipo de necessidade."
           />
           {/*
             Cada card revela a foto do serviço no hover (desktop); no mobile a
@@ -162,14 +219,14 @@ export default function Home() {
             site com reveal em foto — as demais fotos não têm hover/zoom.
           */}
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 4) * 0.06}>
+            {homeSolutions.map((s, i) => (
+              <Reveal key={s.title} delay={(i % 4) * 0.06}>
                 <Link
-                  to={`/solucoes/empresa/${s.slug}`}
+                  to={s.to}
                   className="group relative flex h-full min-h-[220px] flex-col justify-end overflow-hidden rounded-card border border-line bg-canvas p-6 transition-colors hover:border-line-strong"
                 >
                   <img
-                    src={servicePhotos[s.slug]}
+                    src={s.photo}
                     alt=""
                     aria-hidden="true"
                     loading="lazy"
@@ -181,10 +238,10 @@ export default function Home() {
                   />
                   <div className="relative">
                     <h3 className="text-body-lg text-white lg:text-ink lg:group-hover:text-white">
-                      {s.cardTitle}
+                      {s.title}
                     </h3>
                     <p className="mt-1.5 text-body-sm text-white/85 lg:text-ink-soft lg:group-hover:text-white/85">
-                      {s.summary}
+                      {s.desc}
                     </p>
                     <span className="mt-3 inline-block text-caption font-medium text-white lg:text-ink-muted lg:group-hover:text-white">
                       Saiba mais →
@@ -276,12 +333,19 @@ export default function Home() {
       {/* 8. Prova social */}
       <section className="py-section">
         <LogoStrip />
-        <div className="mx-auto mt-16 grid max-w-page gap-6 px-4 md:grid-cols-2 md:px-6">
-          {homeTestimonials.map((t, i) => (
-            <Reveal key={t.serviceSlug} delay={i * 0.08}>
-              <TestimonialCard testimonial={t} />
-            </Reveal>
-          ))}
+        <div className="mx-auto mt-16 max-w-page px-4 md:px-6">
+          <SectionHeading
+            eyebrow="Depoimentos"
+            title="Confiança de quem já é atendido"
+            lead="Ao longo dos anos, a Medicar construiu uma trajetória marcada por eficiência, organização e alto volume de atendimentos realizados com qualidade."
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {homeTestimonials.map((t, i) => (
+              <Reveal key={t.serviceSlug} delay={i * 0.08}>
+                <TestimonialCard testimonial={t} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

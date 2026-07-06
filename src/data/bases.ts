@@ -12,7 +12,7 @@ export const bases: readonly Base[] = [
   { city: 'Santos', address: 'Av. Conselheiro Nébias, 236 – Vila Mathias' },
   { city: 'Campinas', address: 'Av. Dr. Alberto Sarmento, 838 – Bonfim' },
   { city: 'Rio de Janeiro', address: 'R. Estácio de Sá, 151 – Estácio' },
-  { city: 'Goiânia', address: 'Av. T-63, 3362, Jardim América' },
+  { city: 'Goiânia', address: 'Av. T-63, 3362, Qd 332 lt 10, Jardim América' },
   { city: 'Brasília', address: 'SCRS 516, Bloco B, 66, 1º andar, Asa Sul' },
 ]
 

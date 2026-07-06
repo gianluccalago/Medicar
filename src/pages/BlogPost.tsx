@@ -24,18 +24,57 @@ export default function BlogPost() {
  <h1 className="mt-4 text-heading-sm text-ink md:text-heading">{post.title}</h1>
         <p className="mt-4 text-body-lg text-ink-soft">{post.excerpt}</p>
 
-        <div className="mt-10 rounded-card border border-line bg-surface p-6">
-          <p className="text-caption font-medium uppercase tracking-[0.08em] text-ink-muted">
-            Conteúdo em migração
-          </p>
-          <p className="mt-2 text-body-sm text-ink-soft">{post.body}</p>
-          <Link
-            to="/contato"
-            className="mt-4 inline-block text-body-sm font-medium text-medicar-red-deep hover:underline"
-          >
-            Falar com a Medicar →
-          </Link>
-        </div>
+        {post.content ? (
+          <div className="mt-10">
+            {post.content.map((block, i) => (
+              <div key={i} className="mb-6">
+                {block.heading && (
+                  <h2 className="mb-3 mt-4 text-subheading text-ink">{block.heading}</h2>
+                )}
+                {block.subheading && (
+                  <h3 className="mb-2 text-body-lg text-ink">{block.subheading}</h3>
+                )}
+                {block.paragraph && (
+                  <p className="text-body text-ink-soft">{block.paragraph}</p>
+                )}
+                {block.list && (
+                  <ul className="mt-2 space-y-1.5 pl-1">
+                    {block.list.map((item) => (
+                      <li key={item} className="flex gap-2.5 text-body text-ink-soft">
+                        <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-medicar-red" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+            {post.ctaText && (
+              <div className="mt-10 rounded-card bg-red-wash p-6">
+                <p className="text-body text-ink">{post.ctaText}</p>
+                <Link
+                  to="/contato"
+                  className="mt-4 inline-flex rounded-btn bg-medicar-red px-4 py-2 text-[14px] font-medium text-white transition-colors hover:bg-medicar-red-deep"
+                >
+                  Falar com nossos especialistas
+                </Link>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="mt-10 rounded-card border border-line bg-surface p-6">
+            <p className="text-caption font-medium uppercase tracking-[0.08em] text-ink-muted">
+              Conteúdo em preparação
+            </p>
+            <p className="mt-2 text-body-sm text-ink-soft">{post.body}</p>
+            <Link
+              to="/contato"
+              className="mt-4 inline-block text-body-sm font-medium text-medicar-red-deep hover:underline"
+            >
+              Falar com a Medicar →
+            </Link>
+          </div>
+        )}
       </article>
 
       <section className="border-t border-line">

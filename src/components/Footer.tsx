@@ -53,7 +53,7 @@ export function Footer() {
           <div>
             <h2 className={colTitle}>Links úteis</h2>
             <ul className="mt-3 space-y-2">
-              <li><Link to="/sobre-nos" className={colLink}>Quem somos</Link></li>
+              <li><Link to="/quem-somos" className={colLink}>Quem somos</Link></li>
               <li><Link to="/clinica-medicar" className={colLink}>Clínica Medicar</Link></li>
               <li><Link to="/blog" className={colLink}>Blog</Link></li>
               <li><Link to="/area-do-cliente" className={colLink}>Área do cliente</Link></li>

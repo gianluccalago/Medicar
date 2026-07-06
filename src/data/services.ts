@@ -96,8 +96,7 @@ export const services: readonly Service[] = [
     slug: 'area-protegida',
     name: 'Área Protegida Medicar',
     cardTitle: 'Área Protegida',
-    summary:
-      'Atendimento emergencial no local, com UTIs móveis 24h, para funcionários, clientes e visitantes.',
+    summary: 'Atendimento emergencial 24h para empresas, clientes e visitantes.',
     headline: 'Emergências atendidas dentro do seu estabelecimento',
     intro:
       'Atendimento emergencial no local com UTIs móveis, 24 horas por dia, para funcionários, clientes e visitantes. Cobertura para mal-estar, desmaios, quadros cardiológicos e respiratórios, traumas, quedas e atropelamentos.',
@@ -142,8 +141,7 @@ export const services: readonly Service[] = [
     slug: 'coletivo-empresarial',
     name: 'Coletivo Empresarial',
     cardTitle: 'Coletivo Empresarial',
-    summary:
-      'Análise de riscos do negócio e plano coletivo personalizado, com emergência e telemedicina 24h.',
+    summary: 'Planos personalizados, com atendimento emergencial e telemedicina.',
     headline: 'Um plano coletivo desenhado para o risco do seu negócio',
     intro:
       'Analisamos os riscos da sua operação — incêndios, quedas, intoxicações químicas — e desenhamos um plano coletivo personalizado para proteger sua equipe.',
@@ -191,8 +189,7 @@ export const services: readonly Service[] = [
     slug: 'telemedicina',
     name: 'Telemedicina Medicar',
     cardTitle: 'Telemedicina',
-    summary:
-      'Pronto atendimento on-line 24h/7d por videochamada, com médicos 100% Medicar.',
+    summary: 'Consultas médicas on-line, 24h por dia, 7 dias na semana.',
     headline: 'Pronto atendimento on-line, 24 horas, 7 dias por semana',
     intro:
       'Atendimento por videochamada a qualquer hora: sem limite de uso com clínico generalista e especialistas com agendamento. 100% dos atendimentos são realizados por médicos da Medicar.',
@@ -238,8 +235,7 @@ export const services: readonly Service[] = [
     slug: 'terceirizacao-de-ambulatorio',
     name: 'Terceirização de Ambulatório',
     cardTitle: 'Terceirização de Ambulatório',
-    summary:
-      'Ambulatórios e postos de enfermagem completos, com profissionais de vínculo direto Medicar.',
+    summary: 'Estruturação e gestão de ambulatórios em empresas, shoppings e condomínios.',
     headline: 'Seu ambulatório, por conta da Medicar',
     intro:
       'Montamos e administramos ambulatórios e postos de enfermagem em shoppings, edifícios corporativos e condomínios — com profissionais de vínculo direto Medicar, sem subcontratação.',
@@ -278,8 +274,7 @@ export const services: readonly Service[] = [
     slug: 'locacao-de-ambulancia',
     name: 'Locação de Ambulância',
     cardTitle: 'Locação de Ambulância',
-    summary:
-      'Maior player nacional em frota: economia de até 35% nos custos operacionais.',
+    summary: 'Reduza custos com uma frota moderna e gestão completa.',
     headline: 'Por que comprar se você pode alugar?',
     intro:
       'Maior player nacional em número de ambulâncias, a Medicar oferece contratos flexíveis com economia de até 35% nos custos operacionais — e cuida de tudo: documentação, multas, seguros, manutenção completa, carros reserva e logística de peças.',
@@ -398,11 +393,11 @@ export const services: readonly Service[] = [
     // PENDENTE APROVAÇÃO MEDICAR — copy rascunhada de forma conservadora.
     // Não afirmar certificações; não citar prazos legais específicos.
     slug: 'nr-1',
-    name: 'NR-1 e gestão de riscos ocupacionais',
-    cardTitle: 'NR-1',
+    name: 'Gestão de Risco Psicossocial 360º',
+    cardTitle: 'Gestão de Risco Psicossocial 360º',
     summary:
-      'Parceira na adequação à NR-1: apoio à gestão de riscos ocupacionais, inclusive os psicossociais.',
-    headline: 'Apoio à adequação à NR-1',
+      'Programa de ações diagnósticas, preventivas e educativas para promover o bem-estar emocional e atender às normas da NR-1.',
+    headline: 'Gestão de Risco Psicossocial 360º',
     intro:
       'A Medicar apoia a sua empresa na jornada de adequação à NR-1, conectando a atenção à saúde e à segurança dos colaboradores — inclusive os riscos psicossociais — ao seu Gerenciamento de Riscos Ocupacionais (GRO) e ao PGR.',
     benefits: [

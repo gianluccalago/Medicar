@@ -23,7 +23,7 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="sobre-nos" element={<About />} />
+        <Route path="quem-somos" element={<About />} />
         <Route path="solucoes/empresa" element={<SolutionsBusiness />} />
         <Route path="solucoes/empresa/:slug" element={<ServicePage />} />
         <Route path="solucoes/para-voce" element={<SolutionsPersonal />} />

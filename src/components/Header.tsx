@@ -97,7 +97,7 @@ export function Header() {
             <NavLink to="/" end className={navLinkClass}>
               Home
             </NavLink>
-            <NavLink to="/sobre-nos" className={navLinkClass}>
+            <NavLink to="/quem-somos" className={navLinkClass}>
               Quem somos
             </NavLink>
 
@@ -219,7 +219,7 @@ export function Header() {
             <Link to="/" className="border-b border-line py-3.5 text-body text-ink">
               Home
             </Link>
-            <Link to="/sobre-nos" className="border-b border-line py-3.5 text-body text-ink">
+            <Link to="/quem-somos" className="border-b border-line py-3.5 text-body text-ink">
               Quem somos
             </Link>
             <button
