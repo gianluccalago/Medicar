@@ -183,7 +183,7 @@ export default function Home() {
                           <span className="text-medicar-red transition-transform duration-200 group-hover:scale-105">
                             <SolutionIcon name={s.icon} size={38} />
                           </span>
-                          <h3 className="mt-4 text-body font-medium text-ink">{s.title}</h3>
+                          <h3 className="mt-4 text-body text-ink">{s.title}</h3>
                           <p className="mt-2 text-body-sm text-ink-soft">{s.description}</p>
                         </Link>
                       </Reveal>
