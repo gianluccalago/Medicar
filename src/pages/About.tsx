@@ -152,7 +152,7 @@ export default function About() {
                     aria-hidden="true"
                     className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-surface bg-medicar-red"
                   />
-                  <p className="text-body-lg text-ink">{entry.year}</p>
+                  <p className="text-body-lg font-bold text-ink">{entry.year}</p>
                   <p className="mt-1 text-body-sm text-ink-soft">{entry.text}</p>
                 </li>
               </Reveal>

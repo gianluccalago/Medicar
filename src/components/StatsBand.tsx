@@ -72,7 +72,12 @@ export function StatsBand() {
 
         <div className="mt-14 grid grid-cols-2 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-white/30">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.06} className="lg:px-6">
+            <Reveal
+              key={s.label}
+              delay={i * 0.06}
+              // No mobile (2 colunas), o 5º número ocupa a linha inteira centralizado
+              className={`lg:px-6 ${i === stats.length - 1 ? 'max-sm:col-span-2' : ''}`}
+            >
               <div className="flex h-full flex-col items-center text-center text-white">
                 <svg
                   width="60"

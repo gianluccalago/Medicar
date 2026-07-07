@@ -95,7 +95,12 @@ export function ServiceView({ service, origin }: ServiceViewProps) {
             Por que contratar {service.cardTitle} com a Medicar
           </h2>
         </Reveal>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* 4 itens → 2×2 (evita card órfão numa grade de 3 colunas) */}
+        <div
+          className={`mt-10 grid gap-4 sm:grid-cols-2 ${
+            service.benefits.length === 4 ? '' : 'lg:grid-cols-3'
+          }`}
+        >
           {service.benefits.map((b, i) => (
             <Reveal key={b.title} delay={(i % 3) * 0.05}>
               <div className="h-full rounded-card border border-line bg-canvas p-5">
@@ -112,7 +117,11 @@ export function ServiceView({ service, origin }: ServiceViewProps) {
       <section className="border-y border-line bg-surface">
         <div className="mx-auto grid max-w-page items-center gap-10 px-4 py-section md:px-6 lg:grid-cols-[1.25fr_0.75fr]">
           <Reveal>
-            <MediaFrame poster={heroPhoto ?? photos.ambulance} alt={`Como funciona — ${service.cardTitle}`} />
+            {/* Poster diferente da foto do hero, para não repetir a mesma imagem na sequência */}
+            <MediaFrame
+              poster={heroPhoto === photos.mission ? photos.ambulance : photos.mission}
+              alt={`Como funciona — ${service.cardTitle}`}
+            />
           </Reveal>
           <Reveal delay={0.06}>
             <div>
@@ -212,8 +221,15 @@ export function ServiceView({ service, origin }: ServiceViewProps) {
               Escolha o modelo conforme a operação e o terreno.
             </p>
           </div>
-          <div className="group relative mt-4 overflow-hidden pb-section">
-            <ul className="flex w-max animate-marquee-slow gap-4 px-4 group-hover:[animation-play-state:paused]">
+          <div
+            className="group relative mt-4 overflow-hidden pb-section"
+            style={{
+              maskImage: 'linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
+              WebkitMaskImage:
+                'linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
+            }}
+          >
+            <ul className="flex w-max animate-marquee-slow gap-4 px-4 group-hover:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:overflow-x-auto motion-reduce:[mask-image:none]">
               {[...ambulanceModels, ...ambulanceModels, ...ambulanceModels].map((m, i) => (
                 <li
                   key={`${m.name}-${i}`}

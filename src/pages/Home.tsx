@@ -210,7 +210,7 @@ export default function Home() {
       <section className="mx-auto max-w-page px-4 py-section md:px-6">
         <SectionHeading
           eyebrow="Como funciona"
-          title="Do chamado ao socorro, em 4 etapas"
+          title={'Do chamado ao socorro, em 4 etapas'}
           lead="Central de Atendimento 24h com regulação médica: o recurso certo, no menor tempo."
         />
         <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

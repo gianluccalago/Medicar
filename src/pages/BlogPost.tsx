@@ -22,7 +22,8 @@ export default function BlogPost() {
           / <span className="text-ink-soft">{post.category}</span>
         </nav>
  <h1 className="mt-4 text-heading-sm text-ink md:text-heading">{post.title}</h1>
-        <p className="mt-4 text-body-lg text-ink-soft">{post.excerpt}</p>
+        {/* Com conteúdo estruturado, o 1º parágrafo já repete o excerpt — evita duplicar */}
+        {!post.content && <p className="mt-4 text-body-lg text-ink-soft">{post.excerpt}</p>}
 
         {post.content ? (
           <div className="mt-10">

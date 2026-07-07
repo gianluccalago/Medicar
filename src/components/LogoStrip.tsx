@@ -41,7 +41,7 @@ export function LogoStrip() {
                   <img
                     src={c.logo}
                     alt={c.name}
-                    className="h-8 w-auto opacity-70 grayscale transition group-hover:opacity-100"
+                    className="h-9 w-auto opacity-70 grayscale transition group-hover:opacity-100"
                   />
                 ) : (
                   // Placeholder textual até o asset do logo chegar.
