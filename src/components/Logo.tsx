@@ -21,7 +21,9 @@ export function Logo({ variant = 'default', className = '' }: LogoProps) {
       alt="Medicar — soluções em saúde"
       width={519}
       height={205}
-      className={`h-[68px] w-auto md:h-[80px] ${className}`}
+      // max-w-none: anula o `img { max-width: 100% }` do preflight — sem isso
+      // o flex do header espremia a logo na horizontal (deformação histórica).
+      className={`h-[68px] w-auto max-w-none md:h-[80px] ${className}`}
     />
   )
 }

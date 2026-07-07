@@ -130,9 +130,10 @@ export function Header() {
       <div className="border-b border-line bg-canvas">
         <nav
           aria-label="Navegação principal"
-          className="mx-auto flex h-[88px] max-w-page items-stretch justify-between gap-4 px-4 md:h-[96px] md:px-6"
+          className="mx-auto flex h-[88px] max-w-page items-stretch justify-between gap-2 px-4 md:h-[96px] md:px-6"
         >
-          <Link to="/" aria-label="Medicar — página inicial" className="flex items-center">
+          {/* shrink-0: a logo NUNCA encolhe — quem cede espaço é o resto do nav */}
+          <Link to="/" aria-label="Medicar — página inicial" className="flex shrink-0 items-center">
             <Logo />
           </Link>
 
@@ -152,7 +153,7 @@ export function Header() {
                     aria-expanded={isOpen}
                     aria-haspopup="true"
                     onClick={() => setOpenMenu(isOpen ? null : menu.label)}
-                    className={`inline-flex items-center gap-2 whitespace-nowrap px-6 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
+                    className={`inline-flex items-center gap-2 whitespace-nowrap px-4 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
                       isOpen ? 'bg-medicar-red text-white' : 'text-ink hover:text-medicar-red-deep'
                     }`}
                   >
@@ -186,7 +187,7 @@ export function Header() {
             <NavLink
               to="/blog"
               className={({ isActive }) =>
-                `inline-flex items-center whitespace-nowrap border-l border-line px-6 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
+                `inline-flex items-center whitespace-nowrap border-l border-line px-4 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
                   isActive ? 'text-medicar-red-deep' : 'text-ink hover:text-medicar-red-deep'
                 }`
               }
@@ -196,7 +197,7 @@ export function Header() {
             <NavLink
               to="/contato"
               className={({ isActive }) =>
-                `inline-flex items-center whitespace-nowrap border-l border-line px-6 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
+                `inline-flex items-center whitespace-nowrap border-l border-line px-4 text-[16px] font-bold tracking-[-0.01em] transition-colors ${
                   isActive ? 'text-medicar-red-deep' : 'text-ink hover:text-medicar-red-deep'
                 }`
               }
@@ -211,7 +212,7 @@ export function Header() {
               href={careersUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center gap-2.5 whitespace-nowrap rounded-btn border-[1.5px] border-medicar-red px-5 py-2.5 text-[15px] font-bold text-medicar-red transition-colors hover:bg-red-wash xl:inline-flex"
+              className="hidden items-center gap-2.5 whitespace-nowrap rounded-btn border-[1.5px] border-medicar-red px-4 py-2.5 text-[15px] font-bold text-medicar-red transition-colors hover:bg-red-wash xl:inline-flex"
             >
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
                 <rect x="3" y="7" width="18" height="13" rx="2" />
