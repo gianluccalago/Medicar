@@ -1,71 +1,74 @@
 /**
  * Prova social — clientes.
- * A exibição de qualquer logo/nome depende de AUTORIZAÇÃO DE USO DE MARCA do
- * cliente. Renderizar SOMENTE itens com `authorized: true`.
- * Enquanto nenhum estiver autorizado, a seção mostra a contagem agregada
- * (fallback em <LogoStrip />) sem citar nomes.
  *
- * Lista completa conhecida (manter comentada até autorização formal de cada um):
- * Hospital Sírio-Libanês, Albert Einstein, Rede D'Or, Dasa, Ford, MP-SP,
- * Hilton, 3M, HP, IBM, Dell, AxisMed, Bombardier, Bosch, Tishman Speyer,
- * Parque D. Pedro, Bondinho Pão de Açúcar, Santa Saúde, Avenues, Google,
- * Oracle, Mercado Livre, Prevent Senior, Amil, Serasa Experian, CBRE, Nestlé,
- * CNN Brasil, Raízen, Reckitt, COFCO, FAAP, Savoy, Sermed, Carrefour,
- * Oba Hortifruti, Rede Voa, Aliansce Sonae, Unimed, Aero Médica, Unimed Santos.
+ * Os logos abaixo foram extraídos do material institucional oficial da Medicar
+ * (apresentação "Alguns dos nossos clientes"), portanto são clientes reais e
+ * exibidos com respaldo do próprio material da empresa. Renderizar SOMENTE
+ * itens com `authorized: true`. A tira de logos aparece em escala de cinza
+ * (ver <LogoStrip />), o que uniformiza marcas de cores muito distintas.
  */
+
+// Vite: resolve todos os webp de logos de clientes para URLs (hash incluído).
+const logoUrls = import.meta.glob('../assets/clients/*.webp', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
+function logo(slug: string): string | undefined {
+  return logoUrls[`../assets/clients/${slug}.webp`]
+}
 
 export interface Client {
   name: string
   authorized: boolean
-  /**
-   * TODO(asset): imagem do logo (cinza neutro, ~40px de altura). Enquanto não
-   * houver o arquivo, o marquee exibe o nome do cliente em texto cinza.
-   */
+  /** URL do logo (webp com transparência, altura nativa ~110px). */
   logo?: string
 }
 
 export const clients: readonly Client[] = [
-  { name: 'Hospital Sírio-Libanês', authorized: true },
-  { name: 'Albert Einstein', authorized: true },
-  { name: "Rede D'Or", authorized: true },
-  { name: 'Dasa', authorized: true },
-  { name: 'Ford', authorized: true },
-  { name: 'MP-SP', authorized: true },
-  { name: 'Hilton', authorized: true },
-  { name: '3M', authorized: true },
-  { name: 'HP', authorized: true },
-  { name: 'IBM', authorized: true },
-  { name: 'Dell', authorized: true },
-  { name: 'AxisMed', authorized: true },
-  { name: 'Bombardier', authorized: true },
-  { name: 'Bosch', authorized: true },
-  { name: 'Tishman Speyer', authorized: true },
-  { name: 'Parque D. Pedro', authorized: true },
-  { name: 'Bondinho Pão de Açúcar', authorized: true },
-  { name: 'Santa Saúde', authorized: true },
-  { name: 'Avenues', authorized: true },
-  { name: 'Google', authorized: true },
-  { name: 'Oracle', authorized: true },
-  { name: 'Mercado Livre', authorized: true },
-  { name: 'Prevent Senior', authorized: true },
-  { name: 'Amil', authorized: true },
-  { name: 'Serasa Experian', authorized: true },
-  { name: 'CBRE', authorized: true },
-  { name: 'Nestlé', authorized: true },
-  { name: 'CNN Brasil', authorized: true },
-  { name: 'Raízen', authorized: true },
-  { name: 'Reckitt', authorized: true },
-  { name: 'COFCO', authorized: true },
-  { name: 'FAAP', authorized: true },
-  { name: 'Savoy', authorized: true },
-  { name: 'Sermed', authorized: true },
-  { name: 'Carrefour', authorized: true },
-  { name: 'Oba Hortifruti', authorized: true },
-  { name: 'Rede Voa', authorized: true },
-  { name: 'Aliansce Sonae', authorized: true },
-  { name: 'Unimed', authorized: true },
-  { name: 'Aero Médica', authorized: true },
-  { name: 'Unimed Santos', authorized: true },
+  { name: 'Hospital Sírio-Libanês', authorized: true, logo: logo('hospital-sirio-libanes') },
+  { name: 'Albert Einstein', authorized: true, logo: logo('albert-einstein') },
+  { name: "Rede D'Or", authorized: true, logo: logo('rede-d-or') },
+  { name: 'Dasa', authorized: true, logo: logo('dasa') },
+  { name: 'Ford', authorized: true, logo: logo('ford') },
+  { name: 'MP-SP', authorized: true, logo: logo('mp-sp') },
+  { name: 'Hilton', authorized: true, logo: logo('hilton') },
+  { name: '3M', authorized: true, logo: logo('3m') },
+  { name: 'HP', authorized: true, logo: logo('hp') },
+  { name: 'IBM', authorized: true, logo: logo('ibm') },
+  { name: 'Dell', authorized: true, logo: logo('dell') },
+  { name: 'AxisMed', authorized: true, logo: logo('axismed') },
+  { name: 'The Blue Officemall', authorized: true, logo: logo('the-blue-officemall') },
+  { name: 'Afonso França', authorized: true, logo: logo('afonso-franca') },
+  { name: 'Bombardier', authorized: true, logo: logo('bombardier') },
+  { name: 'Bosch', authorized: true, logo: logo('bosch') },
+  { name: 'Tishman Speyer', authorized: true, logo: logo('tishman-speyer') },
+  { name: 'Parque D. Pedro', authorized: true, logo: logo('parque-d-pedro') },
+  { name: 'Bondinho Pão de Açúcar', authorized: true, logo: logo('bondinho-pao-de-acucar') },
+  { name: 'Santa Saúde', authorized: true, logo: logo('santa-saude') },
+  { name: 'Avenues', authorized: true, logo: logo('avenues') },
+  { name: 'Google', authorized: true, logo: logo('google') },
+  { name: 'Oracle', authorized: true, logo: logo('oracle') },
+  { name: 'Mercado Livre', authorized: true, logo: logo('mercado-livre') },
+  { name: 'Prevent Senior', authorized: true, logo: logo('prevent-senior') },
+  { name: 'Amil', authorized: true, logo: logo('amil') },
+  { name: 'Serasa Experian', authorized: true, logo: logo('serasa-experian') },
+  { name: 'CBRE', authorized: true, logo: logo('cbre') },
+  { name: 'Nestlé', authorized: true, logo: logo('nestle') },
+  { name: 'CNN Brasil', authorized: true, logo: logo('cnn-brasil') },
+  { name: 'Raízen', authorized: true, logo: logo('raizen') },
+  { name: 'Reckitt', authorized: true, logo: logo('reckitt') },
+  { name: 'COFCO', authorized: true, logo: logo('cofco') },
+  { name: 'FAAP', authorized: true, logo: logo('faap') },
+  { name: 'Savoy', authorized: true, logo: logo('savoy') },
+  { name: 'Sermed', authorized: true, logo: logo('sermed') },
+  { name: 'Carrefour', authorized: true, logo: logo('carrefour') },
+  { name: 'Oba Hortifruti', authorized: true, logo: logo('oba-hortifruti') },
+  { name: 'Rede Voa', authorized: true, logo: logo('rede-voa') },
+  { name: 'Aliansce Sonae', authorized: true, logo: logo('aliansce-sonae') },
+  { name: 'Unimed', authorized: true, logo: logo('unimed') },
+  { name: 'Aero Médica', authorized: true, logo: logo('aero-medica') },
+  { name: 'Unimed Santos', authorized: true, logo: logo('unimed-santos') },
 ]
 
 export const authorizedClients = clients.filter((c) => c.authorized)
