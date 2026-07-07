@@ -51,11 +51,11 @@ export default function Clinic() {
             </div>
           </div>
           <Reveal className="hidden lg:block">
-            <div className="relative flex items-end justify-center overflow-hidden rounded-card bg-gradient-to-br from-canvas to-red-wash">
+            <div className="relative overflow-hidden rounded-card">
               <img
-                src={photos.doctorHeadset}
-                alt="Médico da Clínica Medicar em atendimento"
-                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(27,28,30,0.14)]"
+                src={photos.clinicDoctor}
+                alt="Médica da Clínica Medicar"
+                className="h-[380px] w-full object-cover object-[50%_18%]"
               />
             </div>
           </Reveal>

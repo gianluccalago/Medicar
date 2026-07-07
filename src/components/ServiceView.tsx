@@ -9,7 +9,7 @@ import { OtherSolutions } from './OtherSolutions'
 import { CtaBand } from './CtaBand'
 import type { Service } from '../data/services'
 import { getTestimonial } from '../data/testimonials'
-import { servicePhotos, photos } from '../assets/photos'
+import { servicePhotos, howPhotos, photos } from '../assets/photos'
 
 interface ServiceViewProps {
   service: Service
@@ -117,9 +117,13 @@ export function ServiceView({ service, origin }: ServiceViewProps) {
       <section className="border-y border-line bg-surface">
         <div className="mx-auto grid max-w-page items-center gap-10 px-4 py-section md:px-6 lg:grid-cols-[1.25fr_0.75fr]">
           <Reveal>
-            {/* Poster diferente da foto do hero, para não repetir a mesma imagem na sequência */}
+            {/* Cena fotográfica própria de cada serviço (sempre ≠ da foto do hero) */}
             <MediaFrame
-              poster={heroPhoto === photos.mission ? photos.ambulance : photos.mission}
+              poster={
+                howPhotos[service.slug] ??
+                (heroPhoto === photos.mission ? photos.ambulance : photos.mission)
+              }
+              cover={service.slug in howPhotos}
               alt={`Como funciona — ${service.cardTitle}`}
             />
           </Reveal>

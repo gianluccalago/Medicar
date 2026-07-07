@@ -102,7 +102,12 @@ export default function Pet() {
       <section className="border-y border-line bg-surface">
         <div className="mx-auto grid max-w-page items-center gap-10 px-4 py-section md:px-6 lg:grid-cols-[1.25fr_0.75fr]">
           <Reveal>
-            <MediaFrame poster={photos.pet} alt="Como funciona o Medicar Pet" />
+            {/* Cena diferente do hero: tutor fotografando o pet p/ teleorientação */}
+            <MediaFrame
+              poster={photos.petTeleorientacao}
+              cover
+              alt="Tutor mostrando o cão pela câmera na teleorientação Medicar Pet"
+            />
           </Reveal>
           <Reveal delay={0.06}>
             <div>
