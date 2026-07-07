@@ -11,7 +11,7 @@ import { LogoStrip } from '../components/LogoStrip'
 import { TestimonialCard } from '../components/TestimonialCard'
 import { CtaBand } from '../components/CtaBand'
 import { SolutionIcon } from '../components/SolutionIcon'
-import { brandMessages, movedByLife, phones } from '../data/site'
+import { brandMessages, movedByLife } from '../data/site'
 import { dispatchFlow } from '../data/services'
 import { coverageAreas, coverageNote } from '../data/bases'
 import { testimonials } from '../data/testimonials'
@@ -44,25 +44,22 @@ export default function Home() {
               Soluções em saúde para você ou sua empresa
             </h1>
             <p className="mt-5 text-body-lg text-white/90">{brandMessages.heroSub}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink to="/solucoes/empresa" variant="primary">
+            <div className="mt-9 flex flex-wrap gap-3">
+              <ButtonLink
+                to="/solucoes/empresa"
+                variant="primary"
+                className="px-7 py-3.5 text-[16px]"
+              >
                 Conheça nossos serviços
               </ButtonLink>
-              {/* Rótulo do 2º CTA sugerido (no print o botão vermelho estava sem texto) — confirmar */}
-              <ButtonLink to="/contato" variant="ghostOnRed">
+              <ButtonLink
+                to="/contato"
+                variant="ghostOnRed"
+                className="px-7 py-3.5 text-[16px]"
+              >
                 Fale conosco
               </ButtonLink>
             </div>
-            <a
-              href={phones.emergency.tel}
-              className="mt-10 inline-flex items-center gap-2 rounded-full border border-white/30 bg-ink/40 px-4 py-2 text-body-sm font-medium text-white backdrop-blur hover:border-white/60"
-            >
-              <span
-                aria-hidden="true"
-                className="inline-block h-2 w-2 animate-pulse rounded-full bg-medicar-red"
-              />
-              {phones.emergency.label}: {phones.emergency.display}
-            </a>
           </div>
         </div>
       </section>
