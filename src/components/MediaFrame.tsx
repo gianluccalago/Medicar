@@ -20,6 +20,16 @@ export function MediaFrame({ poster, videoSrc, cover = false, alt, className = '
     <div className={`overflow-hidden rounded-card border border-line bg-surface ${className}`}>
       {videoSrc ? (
         <video
+          // React não escreve o atributo `muted` no DOM; iOS exige mudo desde
+          // o parse p/ autoplay — força via ref e dá play programático.
+          ref={(el) => {
+            if (el) {
+              el.muted = true
+              el.defaultMuted = true
+              el.setAttribute('muted', '')
+              el.play().catch(() => {})
+            }
+          }}
           className="aspect-video h-full w-full object-cover"
           src={videoSrc}
           poster={poster}
@@ -27,6 +37,7 @@ export function MediaFrame({ poster, videoSrc, cover = false, alt, className = '
           muted
           loop
           playsInline
+          disablePictureInPicture
           preload="metadata"
           aria-label={alt}
         />

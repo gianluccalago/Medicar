@@ -133,6 +133,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+ * Todos os vídeos do site são decorativos (autoplay muted loop, sem
+ * controles). Garante que o WebKit (iOS) nunca desenhe o botão nativo de
+ * play sobre eles quando o autoplay é adiado/bloqueado.
+ */
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
