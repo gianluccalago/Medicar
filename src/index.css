@@ -82,7 +82,8 @@
 
   /* Layout */
   --spacing-page: 1200px;
-  --spacing-section: 96px;
+  /* Respiro vertical das seções internas (heros têm padding próprio) */
+  --spacing-section: 72px;
 
   --shadow-hairline: 0 0 0 1px #e6e7e9;
 

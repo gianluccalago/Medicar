@@ -91,8 +91,9 @@ export function Header() {
       */}
       <div className="bg-medicar-red text-white">
         <div className="mx-auto flex max-w-page items-stretch justify-between md:px-6">
+          {/* Sem "Medicar" aqui: a marca já aparece na logo e no menu logo abaixo */}
           <span className="hidden items-center px-4 text-[15px] font-bold tracking-[-0.01em] lg:flex">
-            Seja Bem-vindo a Medicar
+            Seja bem-vindo!
           </span>
           <div className="flex flex-1 items-stretch justify-center max-lg:justify-between lg:flex-none">
             <a
@@ -129,7 +130,7 @@ export function Header() {
       <div className="border-b border-line bg-canvas">
         <nav
           aria-label="Navegação principal"
-          className="mx-auto flex h-[76px] max-w-page items-stretch justify-between gap-4 px-4 md:px-6"
+          className="mx-auto flex h-[88px] max-w-page items-stretch justify-between gap-4 px-4 md:h-[96px] md:px-6"
         >
           <Link to="/" aria-label="Medicar — página inicial" className="flex items-center">
             <Logo />

@@ -21,7 +21,7 @@ export function Logo({ variant = 'default', className = '' }: LogoProps) {
       alt="Medicar — soluções em saúde"
       width={519}
       height={205}
-      className={`h-[52px] w-auto md:h-[62px] ${className}`}
+      className={`h-[68px] w-auto md:h-[80px] ${className}`}
     />
   )
 }
