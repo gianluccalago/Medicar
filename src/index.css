@@ -89,6 +89,9 @@
   --animate-marquee: marquee 42s linear infinite;
   --animate-marquee-slow: marquee 32s linear infinite;
   --animate-float: float 4.5s ease-in-out infinite;
+  /* Loading da marca: asterisco girando; com reduced-motion, pulso suave */
+  --animate-mark-spin: mark-spin 1.4s linear infinite;
+  --animate-mark-pulse: mark-pulse 1.6s ease-in-out infinite;
 
   @keyframes marquee {
     from {
@@ -106,6 +109,22 @@
     }
     50% {
       transform: translateY(-10px);
+    }
+  }
+
+  @keyframes mark-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes mark-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
     }
   }
 }

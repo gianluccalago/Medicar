@@ -4,6 +4,7 @@ import { Header } from './Header'
 import { Footer } from './Footer'
 import { WhatsAppFloat } from './WhatsAppFloat'
 import { CookieBanner } from './CookieBanner'
+import { LoadingMark } from './LoadingMark'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -27,8 +28,11 @@ export function Layout() {
       <main id="conteudo" className="flex-1">
         <Suspense
           fallback={
-            <div className="mx-auto max-w-page px-4 py-24 md:px-6" aria-busy="true">
-              <p className="text-body-sm text-ink-muted">Carregando…</p>
+            <div
+              aria-busy="true"
+              className="flex min-h-[55vh] items-center justify-center px-4 py-24"
+            >
+              <LoadingMark size={52} />
             </div>
           }
         >

@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Seo } from '../components/Seo'
+import { LoadingMark } from '../components/LoadingMark'
 import { phones, whatsapp } from '../data/site'
 import { bases } from '../data/bases'
 import { insertLead } from '../lib/supabase'
@@ -309,9 +310,17 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="mt-6 inline-flex items-center justify-center rounded-btn bg-medicar-red px-6 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-medicar-red-deep disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-6 inline-flex items-center justify-center gap-2 rounded-btn bg-medicar-red px-6 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-medicar-red-deep disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {status === 'loading' ? 'Enviando…' : 'Enviar mensagem'}
+                {status === 'loading' ? (
+                  <>
+                    {/* label vazio: o texto visível "Enviando…" já anuncia o estado */}
+                    <LoadingMark size={18} variant="onRed" label="" />
+                    Enviando…
+                  </>
+                ) : (
+                  'Enviar mensagem'
+                )}
               </button>
               <p className="mt-3 text-caption text-ink-muted">
                 Prometemos não utilizar suas informações de contato para enviar qualquer tipo de
