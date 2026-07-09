@@ -9,7 +9,6 @@ import areaProtegida from './area_protegida.webp'
 import aeromedico from './aeromedico.webp'
 import pet from './pet.webp'
 import ambulance from './ambulance.webp'
-import familia from './familia.webp'
 import urgencia from './urgencia.webp'
 import mission from './mission.webp'
 import doctorHeadset from './doctor_headset.webp'
@@ -25,6 +24,7 @@ import ambulanciaInterior from './ambulancia_interior.webp'
 import petTeleorientacao from './pet_teleorientacao.webp'
 import remocaoEquipe from './remocao_equipe.webp'
 import clinicDoctor from './clinic_doctor.webp'
+import oculosVideochamada from './oculos_videochamada.webp'
 import doctorMale from './doctor_male.webp'
 
 export const photos = {
@@ -34,7 +34,6 @@ export const photos = {
   aeromedico,
   pet,
   ambulance,
-  familia,
   urgencia,
   mission,
   doctorHeadset,
@@ -50,6 +49,7 @@ export const photos = {
   remocaoEquipe,
   clinicDoctor,
   doctorMale,
+  oculosVideochamada,
 } as const
 
 export type PhotoKey = keyof typeof photos
@@ -65,7 +65,7 @@ export const servicePhotos: Record<string, string> = {
   'remocao-terrestre': mission,
   'transporte-aeromedico': aeromedico,
   'nr-1': coletivo,
-  'lar-protegido': familia,
+  'lar-protegido': maosCuidado,
 }
 
 /**
@@ -83,5 +83,5 @@ export const howPhotos: Record<string, string> = {
   'remocao-terrestre': remocaoEquipe,
   'transporte-aeromedico': centralSoftware,
   'nr-1': nr1Worker,
-  'lar-protegido': maosCuidado,
+  'lar-protegido': centralAtendente,
 }

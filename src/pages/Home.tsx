@@ -110,12 +110,12 @@ export default function Home() {
               to="/solucoes/para-voce"
               className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-canvas transition-colors hover:border-line-strong"
             >
-              <div className="relative flex h-52 items-end justify-center overflow-hidden bg-gradient-to-br from-surface to-red-wash">
+              <div className="relative h-52 overflow-hidden">
                 <img
-                  src={photos.familia}
-                  alt="Senhor sorridente representando o cuidado com você e sua família"
+                  src={photos.telemedicinaApp}
+                  alt="Médica da telemedicina Medicar atendendo por videochamada na tela do celular"
                   loading="lazy"
-                  className="h-[112%] w-auto object-contain object-bottom drop-shadow-[0_12px_24px_rgba(27,28,30,0.12)] transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="h-full w-full object-cover object-[50%_30%] transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </div>
               <div className="flex flex-1 flex-col p-8">

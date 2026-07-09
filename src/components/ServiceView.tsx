@@ -17,6 +17,9 @@ interface ServiceViewProps {
   origin?: string
 }
 
+/** Serviços cuja foto de hero é uma cena retangular (painel cover), não recorte. */
+const RECT_HEROES = new Set(['lar-protegido'])
+
 /** Modelos de ambulância para o carrossel da Locação (adendo item 65/66). */
 const ambulanceModels = [
   { name: 'Tradicional', text: 'A configuração mais versátil, para a maioria das operações.' },
@@ -75,11 +78,22 @@ export function ServiceView({ service, origin }: ServiceViewProps) {
           </div>
           {heroPhoto && (
             <Reveal className="hidden justify-center lg:flex">
-              <img
-                src={heroPhoto}
-                alt={`Medicar — ${service.cardTitle}`}
-                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_12px_26px_rgba(27,28,30,0.11)]"
-              />
+              {RECT_HEROES.has(service.slug) ? (
+                // Foto-cena (retangular): painel arredondado com object-cover
+                <div className="w-full overflow-hidden rounded-card">
+                  <img
+                    src={heroPhoto}
+                    alt={`Medicar — ${service.cardTitle}`}
+                    className="h-[380px] w-full object-cover"
+                  />
+                </div>
+              ) : (
+                <img
+                  src={heroPhoto}
+                  alt={`Medicar — ${service.cardTitle}`}
+                  className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_12px_26px_rgba(27,28,30,0.11)]"
+                />
+              )}
             </Reveal>
           )}
         </div>

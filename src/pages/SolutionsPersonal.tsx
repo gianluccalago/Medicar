@@ -36,11 +36,11 @@ export default function SolutionsPersonal() {
             </div>
           </div>
           <Reveal className="hidden lg:block">
-            <div className="relative flex items-end justify-center overflow-hidden rounded-card bg-gradient-to-br from-canvas to-red-wash">
+            <div className="relative overflow-hidden rounded-card">
               <img
-                src={photos.familia}
-                alt="Pessoa cuidando da própria saúde com o Cartão Medicar"
-                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_12px_26px_rgba(27,28,30,0.11)]"
+                src={photos.oculosVideochamada}
+                alt="Videochamada com médica da telemedicina Medicar refletida nos óculos do paciente"
+                className="h-[380px] w-full object-cover"
               />
             </div>
           </Reveal>
