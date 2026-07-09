@@ -78,7 +78,7 @@ export function ServiceView({ service, origin }: ServiceViewProps) {
               <img
                 src={heroPhoto}
                 alt={`Medicar — ${service.cardTitle}`}
-                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_18px_36px_rgba(27,28,30,0.16)]"
+                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_12px_26px_rgba(27,28,30,0.11)]"
               />
             </Reveal>
           )}
@@ -161,11 +161,15 @@ export function ServiceView({ service, origin }: ServiceViewProps) {
               {service.stepsTitle && (
                 <h2 className="text-heading-sm text-ink">{service.stepsTitle}</h2>
               )}
-              <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {/* Mesma linguagem editorial das etapas da Home (sem card/badge) */}
+              <ol className="mt-8 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
                 {service.steps.map((step, i) => (
                   <Reveal key={step.title} delay={i * 0.06}>
-                    <li className="h-full rounded-card border border-line bg-canvas p-5">
-                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-red-wash text-body-sm text-medicar-red-deep">
+                    <li className="h-full border-t-2 border-medicar-red pt-5">
+                      <span
+                        aria-hidden="true"
+                        className="font-display text-[40px] leading-none text-medicar-red"
+                      >
                         {i + 1}
                       </span>
                       <h3 className="mt-3 text-body text-ink">{step.title}</h3>
@@ -312,11 +316,8 @@ export function ServiceView({ service, origin }: ServiceViewProps) {
       )}
 
       <CtaBand
-        title={
-          service.slug === 'lar-protegido'
-            ? 'Leve o Lar Protegido para a sua casa'
-            : `Leve ${service.cardTitle} para a sua empresa`
-        }
+        // Título escrito à mão por serviço (ctaTitle); fallback só p/ serviços futuros
+        title={service.ctaTitle ?? `Leve ${service.cardTitle} para a sua empresa`}
         text="Fale com a nossa equipe e receba uma proposta sob medida."
         primaryLabel="Quero contratar"
         primaryTo={contactTo}

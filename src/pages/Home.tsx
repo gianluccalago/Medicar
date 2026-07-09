@@ -210,14 +210,18 @@ export default function Home() {
           title={'Do chamado ao socorro, em 4 etapas'}
           lead="Central de Atendimento 24h com regulação médica: o recurso certo, no menor tempo."
         />
-        <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Etapas em numeração tipográfica (linguagem editorial, sem card/badge) */}
+        <ol className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {dispatchFlow.map((step, i) => (
             <Reveal key={step.title} delay={i * 0.08}>
-              <li className="relative h-full rounded-card border border-line bg-canvas p-6">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-red-wash text-body-sm font-semi text-medicar-red-deep">
+              <li className="h-full border-t-2 border-medicar-red pt-5">
+                <span
+                  aria-hidden="true"
+                  className="font-display text-[40px] leading-none text-medicar-red"
+                >
                   {i + 1}
                 </span>
- <h3 className="mt-4 text-body text-ink">{step.title}</h3>
+                <h3 className="mt-3 text-body text-ink">{step.title}</h3>
                 <p className="mt-2 text-body-sm text-ink-soft">{step.text}</p>
               </li>
             </Reveal>

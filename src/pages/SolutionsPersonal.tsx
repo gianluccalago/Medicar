@@ -40,7 +40,7 @@ export default function SolutionsPersonal() {
               <img
                 src={photos.familia}
                 alt="Pessoa cuidando da própria saúde com o Cartão Medicar"
-                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(27,28,30,0.14)]"
+                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_12px_26px_rgba(27,28,30,0.11)]"
               />
             </div>
           </Reveal>

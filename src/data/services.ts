@@ -34,6 +34,10 @@ export interface Service {
   signature?: string
   /** Copy rascunhada, pendente de aprovação da Medicar (exibe aviso) */
   pendingApproval?: boolean
+  /** Título do CTA final — escrito à mão por página (evita fórmula repetida) */
+  ctaTitle?: string
+  /** Rótulo do link no card de listagem (evita "Conhecer a solução" repetido) */
+  linkLabel?: string
 }
 
 /** Fluxo de acionamento da Central 24h — usado na Home e na página de urgência. */
@@ -59,6 +63,8 @@ export const dispatchFlow: readonly ServiceStep[] = [
 export const services: readonly Service[] = [
   {
     slug: 'urgencia-e-emergencia-24h',
+    ctaTitle: 'Emergência não marca hora. A Central 24h atende sempre.',
+    linkLabel: 'Ver como acionamos →',
     name: 'Atendimento de urgência e emergência 24h',
     cardTitle: 'Urgência e emergência 24h',
     summary:
@@ -94,6 +100,8 @@ export const services: readonly Service[] = [
   },
   {
     slug: 'area-protegida',
+    ctaTitle: 'Transforme seu espaço em área protegida',
+    linkLabel: 'Proteger meu espaço →',
     name: 'Área Protegida Medicar',
     cardTitle: 'Área Protegida',
     summary: 'Atendimento emergencial 24h para empresas, clientes e visitantes.',
@@ -139,6 +147,8 @@ export const services: readonly Service[] = [
   },
   {
     slug: 'coletivo-empresarial',
+    ctaTitle: 'Saúde de verdade no pacote de benefícios',
+    linkLabel: 'Montar o plano da equipe →',
     name: 'Coletivo Empresarial',
     cardTitle: 'Coletivo Empresarial',
     summary: 'Planos personalizados, com atendimento emergencial e telemedicina.',
@@ -187,6 +197,8 @@ export const services: readonly Service[] = [
   },
   {
     slug: 'telemedicina',
+    ctaTitle: 'Um médico a poucos toques da sua equipe',
+    linkLabel: 'Ver a plataforma →',
     name: 'Telemedicina Medicar',
     cardTitle: 'Telemedicina',
     summary: 'Consultas médicas on-line, 24h por dia, 7 dias na semana.',
@@ -233,6 +245,8 @@ export const services: readonly Service[] = [
   },
   {
     slug: 'terceirizacao-de-ambulatorio',
+    ctaTitle: 'Seu ambulatório nas mãos de quem é referência',
+    linkLabel: 'Estruturar meu ambulatório →',
     name: 'Terceirização de Ambulatório',
     cardTitle: 'Terceirização de Ambulatório',
     summary: 'Estruturação e gestão de ambulatórios em empresas, shoppings e condomínios.',
@@ -272,6 +286,8 @@ export const services: readonly Service[] = [
   },
   {
     slug: 'locacao-de-ambulancia',
+    ctaTitle: 'Frota pronta, custo previsível',
+    linkLabel: 'Ver modelos e condições →',
     name: 'Locação de Ambulância',
     cardTitle: 'Locação de Ambulância',
     summary: 'Reduza custos com uma frota moderna e gestão completa.',
@@ -320,6 +336,8 @@ export const services: readonly Service[] = [
   },
   {
     slug: 'remocao-terrestre',
+    ctaTitle: 'Remoções com o cuidado de quem faz milhares por ano',
+    linkLabel: 'Planejar remoções →',
     name: 'Remoção Terrestre',
     cardTitle: 'Remoção Terrestre',
     summary:
@@ -363,6 +381,8 @@ export const services: readonly Service[] = [
   },
   {
     slug: 'transporte-aeromedico',
+    ctaTitle: 'UTI aérea pronta para decolar pelo seu paciente',
+    linkLabel: 'Conhecer a UTI aérea →',
     name: 'Transporte Aeromédico',
     cardTitle: 'Transporte Aeromédico',
     summary: 'UTI aérea completa, com equipe própria 24h em célula dedicada.',
@@ -393,6 +413,8 @@ export const services: readonly Service[] = [
     // PENDENTE APROVAÇÃO MEDICAR — copy rascunhada de forma conservadora.
     // Não afirmar certificações; não citar prazos legais específicos.
     slug: 'nr-1',
+    ctaTitle: 'Sua empresa em dia com a NR-1 — e com as pessoas',
+    linkLabel: 'Adequar minha empresa →',
     name: 'Gestão de Risco Psicossocial 360º',
     cardTitle: 'Gestão de Risco Psicossocial 360º',
     summary:
@@ -433,6 +455,8 @@ export const services: readonly Service[] = [
  */
 export const larProtegido: Service = {
   slug: 'lar-protegido',
+  ctaTitle: 'Leve a Central 24h para dentro de casa',
+  linkLabel: 'Levar para minha casa →',
   name: 'Lar Protegido Medicar',
   cardTitle: 'Lar Protegido',
   summary:

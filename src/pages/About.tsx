@@ -61,7 +61,7 @@ export default function About() {
               <img
                 src={photos.team}
                 alt="Equipe Medicar: profissionais de saúde e resgate lado a lado"
-                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(27,28,30,0.14)]"
+                className="h-[360px] w-auto object-contain object-bottom drop-shadow-[0_12px_26px_rgba(27,28,30,0.11)]"
               />
             </div>
           </Reveal>
@@ -167,13 +167,19 @@ export default function About() {
         <p className="mt-3 inline-block rounded-badge bg-red-wash px-2 py-1 text-[11px] text-medicar-red-deep">
           Bloco em aprovação — pilares sugeridos
         </p>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Linhas editoriais com índice tipográfico — quebra a sequência de grids de cards */}
+        <div className="mt-10">
           {differentials.map((d, i) => (
-            <Reveal key={d.title} delay={(i % 4) * 0.05}>
-              <div className="h-full rounded-card border border-line bg-canvas p-6">
-                <AsteriskMark size={20} />
-                <h3 className="mt-3 text-body text-ink">{d.title}</h3>
-                <p className="mt-1.5 text-body-sm text-ink-soft">{d.text}</p>
+            <Reveal key={d.title} delay={i * 0.04}>
+              <div className="grid items-baseline gap-x-8 gap-y-1 border-t border-line py-6 last:border-b sm:grid-cols-[64px_260px_1fr] lg:gap-x-12">
+                <span
+                  aria-hidden="true"
+                  className="font-display text-[28px] leading-none text-medicar-red"
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-body-lg text-ink">{d.title}</h3>
+                <p className="text-body-sm text-ink-soft">{d.text}</p>
               </div>
             </Reveal>
           ))}

@@ -22,8 +22,9 @@ export function CtaBand({
   return (
     <section className="relative overflow-hidden bg-medicar-red">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 text-white/12">
-        <AsteriskMark variant="white" size={420} className="absolute -right-24 -top-24 rotate-12 opacity-[0.13]" />
-        <AsteriskMark variant="white" size={260} className="absolute -bottom-20 -left-16 -rotate-6 opacity-[0.13]" />
+        {/* Composição própria desta faixa (≠ das outras faixas vermelhas) */}
+        <AsteriskMark variant="white" size={520} className="absolute -left-36 -top-40 -rotate-[18deg] opacity-[0.10]" />
+        <AsteriskMark variant="white" size={220} className="absolute -bottom-16 right-[12%] rotate-[24deg] opacity-[0.14]" />
       </div>
       <div className="relative mx-auto max-w-page px-4 py-20 text-center md:px-6">
  <h2 className="mx-auto max-w-2xl text-heading-sm text-white md:text-heading">

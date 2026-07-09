@@ -68,7 +68,7 @@ export default function SolutionsBusiness() {
                 </div>
                 <p className="mt-3 flex-1 text-body-sm text-ink-soft">{s.summary}</p>
                 <span className="mt-5 text-body-sm font-medium text-ink-muted group-hover:text-medicar-red-deep">
-                  Conhecer a solução →
+                  {s.linkLabel ?? 'Conhecer a solução →'}
                 </span>
               </Link>
             </Reveal>

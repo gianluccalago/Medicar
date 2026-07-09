@@ -69,7 +69,7 @@ export default function Pet() {
             <img
               src={photos.pet}
               alt="Cão e gato atendidos pela teleorientação Medicar Pet"
-              className="h-[320px] w-auto object-contain object-bottom drop-shadow-[0_18px_36px_rgba(27,28,30,0.16)]"
+              className="h-[320px] w-auto object-contain object-bottom drop-shadow-[0_12px_26px_rgba(27,28,30,0.11)]"
             />
           </Reveal>
         </div>

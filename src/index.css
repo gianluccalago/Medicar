@@ -158,11 +158,19 @@ body {
   color: var(--color-ink-soft);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Seleção de texto com a cor da marca */
+::selection {
+  background: var(--color-medicar-red);
+  color: #fff;
 }
 
 /*
  * Padronização de pesos (Ubuntu): todos os títulos (h1–h4) em Bold (700).
  * Em @layer base para que utilitários (text-white, font-*) possam sobrepor.
+ * text-wrap balance/pretty: títulos sem viúvas, parágrafos com quebras melhores.
  */
 @layer base {
   h1,
@@ -173,6 +181,22 @@ body {
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.01em;
     color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Foco por teclado: anel da marca, consistente em todo o site */
+  :focus-visible {
+    outline: 2px solid var(--color-medicar-red);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  a {
+    text-underline-offset: 3px;
   }
 }
 

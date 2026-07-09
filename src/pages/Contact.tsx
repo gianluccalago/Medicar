@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Seo } from '../components/Seo'
 import { LoadingMark } from '../components/LoadingMark'
+import { AsteriskMark } from '../components/AsteriskMark'
 import { phones, whatsapp } from '../data/site'
 import { bases } from '../data/bases'
 import { insertLead } from '../lib/supabase'
@@ -124,10 +125,11 @@ export default function Contact() {
               role="status"
               className="rounded-card border border-line bg-surface p-8 text-center"
             >
- <h2 className="text-subheading text-ink">Mensagem enviada!</h2>
+              <AsteriskMark size={28} className="mx-auto" />
+              <h2 className="mt-4 text-subheading text-ink">Recebemos a sua mensagem</h2>
               <p className="mx-auto mt-3 max-w-md text-body-sm text-ink-soft">
-                Obrigado pelo contato. Nossa equipe vai retornar em breve pelo telefone ou e-mail
-                informado.
+                Nossa equipe retorna pelo telefone ou e-mail informado, normalmente em até 1 dia
+                útil. Se o assunto for urgente, a Central 24h atende agora: {phones.emergency.display}.
               </p>
             </div>
           ) : (

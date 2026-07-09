@@ -92,7 +92,8 @@ export function StatsBand() {
                 >
                   {icons[s.icon]}
                 </svg>
-                <span className="mt-5 text-[44px] font-bold leading-none tracking-[-0.02em]">
+                {/* tabular-nums: dígitos de largura fixa — o número não "dança" ao animar */}
+                <span className="mt-5 text-[44px] font-bold leading-none tracking-[-0.02em] tabular-nums">
                   <Counter
                     value={s.value}
                     prefix={s.prefix}
